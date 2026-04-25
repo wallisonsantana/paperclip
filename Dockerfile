@@ -39,8 +39,11 @@ COPY --from=deps /app /app
 COPY . .
 RUN pnpm --filter @paperclipai/ui build
 RUN pnpm --filter @paperclipai/plugin-sdk build
+RUN pnpm --filter @paperclipai/db build
 RUN pnpm --filter @paperclipai/server build
+RUN pnpm --filter paperclipai build
 RUN test -f server/dist/index.js || (echo "ERROR: server build output missing" && exit 1)
+RUN test -f cli/dist/index.js || (echo "ERROR: cli build output missing" && exit 1)
 
 FROM base AS production
 ARG USER_UID=1000
