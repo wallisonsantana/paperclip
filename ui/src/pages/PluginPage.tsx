@@ -110,7 +110,7 @@ export function PluginPage() {
   }
 
   if (!contributions) {
-    return <div className="text-sm text-muted-foreground">Loading…</div>;
+    return <div className="text-sm text-muted-foreground">Carregando…</div>;
   }
 
   if (!pluginId && pluginRoutePath) {

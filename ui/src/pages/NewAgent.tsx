@@ -97,7 +97,7 @@ export function NewAgent() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Agents", href: "/agents" },
+      { label: "Agentes", href: "/agents" },
       { label: "New Agent" },
     ]);
   }, [setBreadcrumbs]);
@@ -128,7 +128,7 @@ export function NewAgent() {
       navigate(agentUrl(result.agent));
     },
     onError: (error) => {
-      setFormError(error instanceof Error ? error.message : "Failed to create agent");
+      setFormError(error instanceof Error ? error.message : "Falha ao criar agente");
     },
   });
 
@@ -209,7 +209,7 @@ export function NewAgent() {
         <div className="px-4 pt-4 pb-2">
           <input
             className="w-full text-lg font-semibold bg-transparent outline-none placeholder:text-muted-foreground/50"
-            placeholder="Agent name"
+            placeholder="Nome do agente"
             value={name}
             onChange={(e) => setName(e.target.value)}
             autoFocus

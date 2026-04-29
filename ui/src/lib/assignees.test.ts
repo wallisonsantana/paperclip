@@ -23,7 +23,7 @@ describe("assignee selection helpers", () => {
 
     expect(option).toEqual({
       id: "user:local-board",
-      label: "Me",
+      label: "Eu",
       searchText: "me board human local-board",
     });
     expect(parseAssigneeValue(option.id)).toEqual({

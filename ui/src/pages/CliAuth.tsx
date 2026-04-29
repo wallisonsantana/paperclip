@@ -58,7 +58,7 @@ export function CliAuthPage() {
         <div className="rounded-lg border border-border bg-card p-6">
           <h1 className="text-lg font-semibold">CLI auth challenge unavailable</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            {challengeQuery.error instanceof Error ? challengeQuery.error.message : "Challenge is invalid or expired."}
+            {challengeQuery.error instanceof Error ? challengeQuery.error.message : "Desafio inválido ou expirado."}
           </p>
         </div>
       </div>
@@ -137,7 +137,7 @@ export function CliAuthPage() {
           <div>
             <div className="text-muted-foreground">Requested access</div>
             <div className="text-foreground">
-              {challenge.requestedAccess === "instance_admin_required" ? "Instance admin" : "Board"}
+              {challenge.requestedAccess === "instance_admin_required" ? "Instance admin" : "Painel"}
             </div>
           </div>
           {challenge.requestedCompanyName && (
@@ -175,7 +175,7 @@ export function CliAuthPage() {
             onClick={() => cancelMutation.mutate()}
             disabled={approveMutation.isPending || cancelMutation.isPending}
           >
-            {cancelMutation.isPending ? "Cancelling..." : "Cancel"}
+            {cancelMutation.isPending ? "Cancelling..." : "Cancelar"}
           </Button>
         </div>
       </div>

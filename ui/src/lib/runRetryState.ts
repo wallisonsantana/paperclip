@@ -22,7 +22,7 @@ const RETRY_REASON_LABELS: Record<string, string> = {
   transient_failure: "Transient failure",
   missing_issue_comment: "Missing issue comment",
   process_lost: "Process lost",
-  assignment_recovery: "Assignment recovery",
+  assignment_recovery: "Recuperação de atribuição",
   issue_continuation_needed: "Continuation needed",
 };
 

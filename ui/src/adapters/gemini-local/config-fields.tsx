@@ -22,7 +22,7 @@ export function GeminiLocalConfigFields({
   if (hideInstructionsFile) return null;
   return (
     <>
-      <Field label="Agent instructions file" hint={instructionsFileHint}>
+      <Field label="Arquivo de instruções do agente" hint={instructionsFileHint}>
         <div className="flex items-center gap-2">
           <DraftInput
             value={

@@ -65,11 +65,11 @@ const routineTabs = ["triggers", "runs", "activity"] as const;
 const concurrencyPolicyDescriptions: Record<string, string> = {
   coalesce_if_active: "Keep one follow-up run queued while an active run is still working.",
   always_enqueue: "Queue every trigger occurrence, even if several runs stack up.",
-  skip_if_active: "Drop overlapping trigger occurrences while the routine is already active.",
+  skip_if_active: "Descartar gatilhos sobrepostos enquanto a rotina estiver ativa.",
 };
 const catchUpPolicyDescriptions: Record<string, string> = {
   skip_missed: "Ignore schedule windows that were missed while the routine or scheduler was paused.",
-  enqueue_missed_with_cap: "Catch up missed schedule windows in capped batches after recovery.",
+  enqueue_missed_with_cap: "Recupere janelas perdidas em lotes limitados após recuperação.",
 };
 const signingModeDescriptions: Record<string, string> = {
   bearer: "Expect a shared bearer token in the Authorization header.",
@@ -185,7 +185,7 @@ function TriggerEditor({
 
       <div className="grid gap-3 md:grid-cols-2">
         <div className="space-y-1.5">
-          <Label className="text-xs">Label</Label>
+          <Label className="text-xs">Rótulo</Label>
           <Input
             value={draft.label}
             onChange={(event) => setDraft((current) => ({ ...current, label: event.target.value }))}
@@ -383,7 +383,7 @@ export function RoutineDetail() {
 
   useEffect(() => {
     if (!routine) return;
-    setBreadcrumbs([{ label: "Routines", href: "/routines" }, { label: routine.title }]);
+    setBreadcrumbs([{ label: "Rotinas", href: "/routines" }, { label: routine.title }]);
     if (!routineDefaults) return;
 
     const changedRoutine = hydratedRoutineIdRef.current !== routine.id;
@@ -404,7 +404,7 @@ export function RoutineDetail() {
     } catch (error) {
       pushToast({
         title: `Failed to copy ${label.toLowerCase()}`,
-        body: error instanceof Error ? error.message : "Clipboard access was denied.",
+        body: error instanceof Error ? error.message : "Acesso à área de transferência negado.",
         tone: "error",
       });
     }
@@ -487,7 +487,7 @@ export function RoutineDetail() {
     onSuccess: async (_data, status) => {
       pushToast({
         title: "Routine saved",
-        body: status === "paused" ? "Automation paused." : "Automation enabled.",
+        body: status === "paused" ? "Automação pausada." : "Automação ativada.",
         tone: "success",
       });
       await Promise.all([
@@ -676,8 +676,8 @@ export function RoutineDetail() {
     : !routine.assigneeAgentId
       ? "Draft"
       : automationEnabled
-        ? "Active"
-        : "Paused";
+        ? "Ativo"
+        : "Pausado";
   const automationLabelClassName = routine.status === "archived"
     ? "text-muted-foreground"
     : automationEnabled
@@ -731,7 +731,7 @@ export function RoutineDetail() {
             onCheckedChange={() => {
               if (!automationEnabled && !routine.assigneeAgentId) {
                 pushToast({
-                  title: "Default agent required",
+                  title: "Agente padrão obrigatório",
                   body: "Set a default agent before enabling routine automation.",
                   tone: "warn",
                 });
@@ -740,7 +740,7 @@ export function RoutineDetail() {
               updateRoutineStatus.mutate(automationEnabled ? "paused" : "active");
             }}
             disabled={automationToggleDisabled}
-            aria-label={automationEnabled ? "Pause automatic triggers" : "Enable automatic triggers"}
+            aria-label={automationEnabled ? "Pause automatic triggers" : "Ativar gatilhos automáticos"}
           />
           <span className={`min-w-[3.75rem] text-sm font-medium ${automationLabelClassName}`}>
             {automationLabel}
@@ -789,10 +789,10 @@ export function RoutineDetail() {
             value={editDraft.assigneeAgentId}
             options={assigneeOptions}
             recentOptionIds={recentAssigneeIds}
-            placeholder="Assignee"
+            placeholder="Responsável"
             noneLabel="No assignee"
             searchPlaceholder="Search assignees..."
-            emptyMessage="No assignees found."
+            emptyMessage="Nenhum responsável encontrado."
             onChange={(assigneeAgentId) => {
               if (assigneeAgentId) trackRecentAssignee(assigneeAgentId);
               setEditDraft((current) => ({ ...current, assigneeAgentId }));
@@ -815,7 +815,7 @@ export function RoutineDetail() {
                   <span className="truncate">{option.label}</span>
                 )
               ) : (
-                <span className="text-muted-foreground">Assignee</span>
+                <span className="text-muted-foreground">Responsável</span>
               )
             }
             renderOption={(option) => {
@@ -835,10 +835,10 @@ export function RoutineDetail() {
             value={editDraft.projectId}
             options={projectOptions}
             recentOptionIds={recentProjectIds}
-            placeholder="Project"
+            placeholder="Projeto"
             noneLabel="No project"
             searchPlaceholder="Search projects..."
-            emptyMessage="No projects found."
+            emptyMessage="Nenhum projeto encontrado."
             onChange={(projectId) => {
               if (projectId) trackRecentProject(projectId);
               setEditDraft((current) => ({ ...current, projectId }));
@@ -854,7 +854,7 @@ export function RoutineDetail() {
                   <span className="truncate">{option.label}</span>
                 </>
               ) : (
-                <span className="text-muted-foreground">Project</span>
+                <span className="text-muted-foreground">Projeto</span>
               )
             }
             renderOption={(option) => {
@@ -1034,7 +1034,7 @@ export function RoutineDetail() {
             </div>
             <div className="flex items-center justify-end">
               <Button size="sm" onClick={() => createTrigger.mutate()} disabled={createTrigger.isPending}>
-                {createTrigger.isPending ? "Adding..." : "Add trigger"}
+                {createTrigger.isPending ? "Adicionando..." : "Adicionar gatilho"}
               </Button>
             </div>
           </div>
@@ -1090,7 +1090,7 @@ export function RoutineDetail() {
 
         <TabsContent value="activity">
           {(activity ?? []).length === 0 ? (
-            <p className="text-xs text-muted-foreground">No activity yet.</p>
+            <p className="text-xs text-muted-foreground">Nenhuma atividade ainda.</p>
           ) : (
             <div className="border border-border rounded-lg divide-y divide-border">
               {(activity ?? []).map((event) => (

@@ -20,7 +20,7 @@ import { AGENT_ROLE_LABELS } from "@paperclipai/shared";
 
 /* ---- Help text for (?) tooltips ---- */
 export const help: Record<string, string> = {
-  name: "Display name for this agent.",
+  name: "Nome de exibição deste agente.",
   title: "Job title shown in the org chart.",
   role: "Organizational role. Determines position and capabilities.",
   reportsTo: "The agent this one reports to in the org hierarchy.",
@@ -420,7 +420,7 @@ export function ChoosePathButton() {
               <ol className="list-decimal space-y-1 pl-5 text-muted-foreground">
                 <li>Find the folder in File Explorer.</li>
                 <li>Hold <kbd>Shift</kbd> and right-click the folder.</li>
-                <li>Click "Copy as path".</li>
+                <li>Click "Copiar como caminho".</li>
                 <li>Paste the result into the path input.</li>
               </ol>
               <p className="rounded-md bg-muted px-2 py-1 font-mono text-xs">
@@ -430,8 +430,8 @@ export function ChoosePathButton() {
             <section className="space-y-1.5">
               <p className="font-medium">Terminal fallback (macOS/Linux)</p>
               <ol className="list-decimal space-y-1 pl-5 text-muted-foreground">
-                <li>Run <code>cd /path/to/folder</code>.</li>
-                <li>Run <code>pwd</code>.</li>
+                <li>Execução<code>cd /path/to/folder</code>.</li>
+                <li>Execução<code>pwd</code>.</li>
                 <li>Copy the output and paste it into the path input.</li>
               </ol>
             </section>

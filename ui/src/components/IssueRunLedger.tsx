@@ -39,12 +39,12 @@ type LivenessCopy = {
 
 const LIVENESS_COPY: Record<RunLivenessState, LivenessCopy> = {
   completed: {
-    label: "Completed",
+    label: "Concluído",
     tone: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
     description: "Issue reached a terminal state.",
   },
   advanced: {
-    label: "Advanced",
+    label: "Avançado",
     tone: "border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300",
     description: "Run produced concrete evidence of progress.",
   },
@@ -59,12 +59,12 @@ const LIVENESS_COPY: Record<RunLivenessState, LivenessCopy> = {
     description: "Run finished without useful output.",
   },
   blocked: {
-    label: "Blocked",
+    label: "Bloqueado",
     tone: "border-yellow-500/30 bg-yellow-500/10 text-yellow-700 dark:text-yellow-300",
     description: "Run or issue declared a blocker.",
   },
   failed: {
-    label: "Failed",
+    label: "Falhou",
     tone: "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300",
     description: "Run ended unsuccessfully.",
   },
@@ -76,7 +76,7 @@ const LIVENESS_COPY: Record<RunLivenessState, LivenessCopy> = {
 };
 
 const PENDING_LIVENESS_COPY: LivenessCopy = {
-  label: "Checks after finish",
+  label: "Verificações após conclusão",
   tone: "border-border bg-background text-muted-foreground",
   description: "Liveness is evaluated after the run finishes.",
 };
@@ -430,7 +430,7 @@ export function IssueRunLedgerContent({
                     {lastUsefulActionLabel(run)}
                   </div>
                   <div className="min-w-0">
-                    <span className="text-foreground">Stop</span>{" "}
+                    <span className="text-foreground">Parar</span>{" "}
                     {stopStatusLabel(run, stopReason)}
                   </div>
                 </div>

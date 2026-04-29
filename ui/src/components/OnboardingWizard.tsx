@@ -354,7 +354,7 @@ export function OnboardingWizard() {
   ): Promise<AdapterEnvironmentTestResult | null> {
     if (!createdCompanyId) {
       setAdapterEnvError(
-        "Create or select a company before testing adapter environment."
+        "Crie ou selecione uma empresa antes de testar o ambiente do adaptador."
       );
       return null;
     }
@@ -372,7 +372,7 @@ export function OnboardingWizard() {
       return result;
     } catch (err) {
       setAdapterEnvError(
-        err instanceof Error ? err.message : "Adapter environment test failed"
+        err instanceof Error ? err.message : "Falha no teste de ambiente do adaptador"
       );
       return null;
     } finally {
@@ -482,7 +482,7 @@ export function OnboardingWizard() {
       });
       setStep(3);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create agent");
+      setError(err instanceof Error ? err.message : "Falha ao criar agente");
     } finally {
       setLoading(false);
     }
@@ -636,7 +636,7 @@ export function OnboardingWizard() {
             className="absolute top-4 left-4 z-10 rounded-sm p-1.5 text-muted-foreground/60 hover:text-foreground transition-colors"
           >
             <X className="h-5 w-5" />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">Fechar</span>
           </button>
 
           {/* Left half — form */}
@@ -651,9 +651,9 @@ export function OnboardingWizard() {
               <div className="flex items-center gap-0 mb-8 border-b border-border">
                 {(
                   [
-                    { step: 1 as Step, label: "Company", icon: Building2 },
-                    { step: 2 as Step, label: "Agent", icon: Bot },
-                    { step: 3 as Step, label: "Task", icon: ListTodo },
+                    { step: 1 as Step, label: "Empresa", icon: Building2 },
+                    { step: 2 as Step, label: "Agente", icon: Bot },
+                    { step: 3 as Step, label: "Tarefa", icon: ListTodo },
                     { step: 4 as Step, label: "Launch", icon: Rocket }
                   ] as const
                 ).map(({ step: s, label, icon: Icon }) => (
@@ -846,7 +846,7 @@ export function OnboardingWizard() {
                             <span className="font-medium">{opt.label}</span>
                             <span className="text-muted-foreground text-[10px]">
                               {opt.comingSoon
-                                ? opt.disabledLabel ?? "Coming soon"
+                                ? opt.disabledLabel ?? "Em breve"
                                 : opt.description}
                             </span>
                           </button>
@@ -881,7 +881,7 @@ export function OnboardingWizard() {
                                   : model ||
                                     (adapterType === "opencode_local"
                                       ? "Select model (required)"
-                                      : "Default")}
+                                      : "Padrão")}
                               </span>
                               <ChevronDown className="h-3 w-3 text-muted-foreground" />
                             </button>
@@ -977,7 +977,7 @@ export function OnboardingWizard() {
                           disabled={adapterEnvLoading}
                           onClick={() => void runAdapterEnvironmentTest()}
                         >
-                          {adapterEnvLoading ? "Testing..." : "Test now"}
+                          {adapterEnvLoading ? "Testando..." : "Testar agora"}
                         </Button>
                       </div>
 
@@ -1161,7 +1161,7 @@ export function OnboardingWizard() {
                         <p className="text-sm font-medium truncate">
                           {companyName}
                         </p>
-                        <p className="text-xs text-muted-foreground">Company</p>
+                        <p className="text-xs text-muted-foreground">Empresa</p>
                       </div>
                       <Check className="h-4 w-4 text-green-500 shrink-0" />
                     </div>
@@ -1225,7 +1225,7 @@ export function OnboardingWizard() {
                       ) : (
                         <ArrowRight className="h-3.5 w-3.5 mr-1" />
                       )}
-                      {loading ? "Creating..." : "Next"}
+                      {loading ? "Creating..." : "Próximo"}
                     </Button>
                   )}
                   {step === 2 && (
@@ -1241,7 +1241,7 @@ export function OnboardingWizard() {
                       ) : (
                         <ArrowRight className="h-3.5 w-3.5 mr-1" />
                       )}
-                      {loading ? "Creating..." : "Next"}
+                      {loading ? "Creating..." : "Próximo"}
                     </Button>
                   )}
                   {step === 3 && (
@@ -1255,7 +1255,7 @@ export function OnboardingWizard() {
                       ) : (
                         <ArrowRight className="h-3.5 w-3.5 mr-1" />
                       )}
-                      {loading ? "Creating..." : "Next"}
+                      {loading ? "Creating..." : "Próximo"}
                     </Button>
                   )}
                   {step === 4 && (
@@ -1298,7 +1298,7 @@ function AdapterEnvironmentResult({
       ? "Passed"
       : result.status === "warn"
       ? "Warnings"
-      : "Failed";
+      : "Falhou";
   const statusClass =
     result.status === "pass"
       ? "text-green-700 dark:text-green-300 border-green-300 dark:border-green-500/40 bg-green-50 dark:bg-green-500/10"

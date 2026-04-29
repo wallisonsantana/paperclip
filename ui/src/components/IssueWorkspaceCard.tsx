@@ -86,7 +86,7 @@ function CopyableInline({ value, label, mono }: { value: string; label?: string;
         type="button"
         className="shrink-0 p-0.5 rounded hover:bg-accent/50 transition-colors text-muted-foreground hover:text-foreground opacity-0 group-hover/copy:opacity-100 focus:opacity-100"
         onClick={handleCopy}
-        title={copied ? "Copied!" : "Copy"}
+        title={copied ? "Copiado!" : "Copiar"}
       >
         {copied ? <Check className="h-3 w-3 text-green-500" /> : <Copy className="h-3 w-3" />}
       </button>
@@ -99,7 +99,7 @@ function workspaceModeLabel(mode: string | null | undefined) {
     case "isolated_workspace": return "Isolated workspace";
     case "operator_branch": return "Operator branch";
     case "cloud_sandbox": return "Cloud sandbox";
-    case "adapter_managed": return "Adapter managed";
+    case "adapter_managed": return "Gerenciado pelo adaptador";
     default: return "Workspace";
   }
 }
@@ -113,7 +113,7 @@ function configuredWorkspaceLabel(
       return "New isolated workspace";
     case "reuse_existing":
       return reusableWorkspace?.mode === "isolated_workspace"
-        ? "Existing isolated workspace"
+        ? "Espaço isolado existente"
         : "Reuse existing workspace";
     default:
       return "Project default";
@@ -471,7 +471,7 @@ export function IssueWorkspaceCard({
             {EXECUTION_WORKSPACE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.value === "reuse_existing" && configuredReusableWorkspace?.mode === "isolated_workspace"
-                  ? "Existing isolated workspace"
+                  ? "Espaço isolado existente"
                   : option.label}
               </option>
             ))}

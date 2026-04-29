@@ -20,8 +20,8 @@ export function JoinRequestQueue() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: selectedCompany?.name ?? "Company", href: "/dashboard" },
-      { label: "Inbox", href: "/inbox" },
+      { label: selectedCompany?.name ?? "Empresa", href: "/dashboard" },
+      { label: "Caixa de Entrada", href: "/inbox" },
       { label: "Join Requests" },
     ]);
   }, [selectedCompany?.name, setBreadcrumbs]);
@@ -96,8 +96,8 @@ export function JoinRequestQueue() {
             }
           >
             <option value="pending_approval">Pending approval</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
+            <option value="approved">Aprovado</option>
+            <option value="rejected">Rejeitado</option>
           </select>
         </label>
         <label className="space-y-2 text-sm">
@@ -109,9 +109,9 @@ export function JoinRequestQueue() {
               setRequestType(event.target.value as "all" | "human" | "agent")
             }
           >
-            <option value="all">All</option>
+            <option value="all">Todas</option>
             <option value="human">Human</option>
-            <option value="agent">Agent</option>
+            <option value="agent">Agente</option>
           </select>
         </label>
       </div>
@@ -136,8 +136,8 @@ export function JoinRequestQueue() {
                   <div>
                     <div className="text-base font-medium">
                       {request.requestType === "human"
-                        ? request.requesterUser?.name || request.requestEmailSnapshot || request.requestingUserId || "Unknown human requester"
-                        : request.agentName || "Unknown agent requester"}
+                        ? request.requesterUser?.name || request.requestEmailSnapshot || request.requestingUserId || "Solicitante humano desconhecido"
+                        : request.agentName || "Solicitante agente desconhecido"}
                     </div>
                     <div className="text-sm text-muted-foreground">
                       {request.requestType === "human"
@@ -172,7 +172,7 @@ export function JoinRequestQueue() {
                   <div className="mt-2">
                     {request.invite
                       ? `${request.invite.allowedJoinTypes} join invite${request.invite.humanRole ? ` • default role ${request.invite.humanRole}` : ""}`
-                      : "Invite metadata unavailable"}
+                      : "Metadados do convite indisponíveis"}
                   </div>
                   {request.invite?.inviteMessage ? (
                     <div className="mt-2 text-foreground">{request.invite.inviteMessage}</div>

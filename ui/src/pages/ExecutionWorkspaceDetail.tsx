@@ -394,9 +394,9 @@ export function ExecutionWorkspaceDetail() {
   useEffect(() => {
     if (!workspace) return;
     const crumbs = [
-      { label: "Projects", href: "/projects" },
+      { label: "Projetos", href: "/projects" },
       ...(project ? [{ label: project.name, href: `/projects/${projectRef}` }] : []),
-      ...(project ? [{ label: "Workspaces", href: `/projects/${projectRef}/workspaces` }] : []),
+      ...(project ? [{ label: "Espaços de Trabalho", href: `/projects/${projectRef}/workspaces` }] : []),
       { label: workspace.name },
     ];
     setBreadcrumbs(crumbs);
@@ -572,9 +572,9 @@ export function ExecutionWorkspaceDetail() {
         <Tabs value={activeTab ?? "configuration"} onValueChange={(value) => handleTabChange(value as ExecutionWorkspaceTab)}>
           <PageTabBar
             items={[
-              { value: "configuration", label: "Configuration" },
+              { value: "configuration", label: "Configuração" },
               { value: "runtime_logs", label: "Runtime logs" },
-              { value: "issues", label: "Issues" },
+              { value: "issues", label: "Tarefas" },
             ]}
             align="start"
             value={activeTab ?? "configuration"}
@@ -598,7 +598,7 @@ export function ExecutionWorkspaceDetail() {
                     onClick={() => setCloseDialogOpen(true)}
                     disabled={workspace.status === "archived"}
                   >
-                    {workspace.status === "cleanup_failed" ? "Retry close" : "Close workspace"}
+                    {workspace.status === "cleanup_failed" ? "Tentar fechar novamente" : "Fechar espaço"}
                   </Button>
                 </CardAction>
               </CardHeader>
@@ -607,12 +607,12 @@ export function ExecutionWorkspaceDetail() {
 
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">General</div>
-                  <Field label="Workspace name">
+                  <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Geral</div>
+                  <Field label="Nome do espaço">
                     <Input
                       value={form.name}
                       onChange={(event) => setForm((current) => current ? { ...current, name: event.target.value } : current)}
-                      placeholder="Execution workspace name"
+                      placeholder="Nome do espaço de execução"
                     />
                   </Field>
                 </div>
@@ -622,7 +622,7 @@ export function ExecutionWorkspaceDetail() {
                 <div className="space-y-4">
                   <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Source control</div>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Branch name" hint="Useful for isolated worktrees">
+                    <Field label="Nome do branch" hint="Útil para worktrees isolados">
                       <Input
                         className="font-mono"
                         value={form.branchName}
@@ -631,7 +631,7 @@ export function ExecutionWorkspaceDetail() {
                       />
                     </Field>
 
-                    <Field label="Base ref">
+                    <Field label="Ref base">
                       <Input
                         className="font-mono"
                         value={form.baseRef}
@@ -654,7 +654,7 @@ export function ExecutionWorkspaceDetail() {
 
                 <div className="space-y-4">
                   <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Paths</div>
-                  <Field label="Working directory">
+                  <Field label="Diretório de trabalho">
                     <Input
                       className="font-mono"
                       value={form.cwd}
@@ -677,7 +677,7 @@ export function ExecutionWorkspaceDetail() {
 
                 <div className="space-y-4">
                   <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Lifecycle commands</div>
-                  <Field label="Provision command" hint="Runs when Paperclip prepares this execution workspace">
+                  <Field label="Comando de provisionamento" hint="Executa quando o Paperclip prepara este espaço de execução">
                     <Textarea
                       className="min-h-20 font-mono"
                       value={form.provisionCommand}
@@ -686,7 +686,7 @@ export function ExecutionWorkspaceDetail() {
                     />
                   </Field>
 
-                  <Field label="Teardown command" hint="Runs when the execution workspace is archived or cleaned up">
+                  <Field label="Comando de desligamento" hint="Executa quando o espaço de execução é arquivado ou limpo">
                     <Textarea
                       className="min-h-20 font-mono"
                       value={form.teardownCommand}
@@ -695,7 +695,7 @@ export function ExecutionWorkspaceDetail() {
                     />
                   </Field>
 
-                  <Field label="Cleanup command" hint="Workspace-specific cleanup before teardown">
+                  <Field label="Comando de limpeza" hint="Limpeza específica do espaço antes do desligamento">
                     <Textarea
                       className="min-h-16 font-mono"
                       value={form.cleanupCommand}
@@ -810,7 +810,7 @@ export function ExecutionWorkspaceDetail() {
                 <CardDescription>Linked objects and relationships</CardDescription>
               </CardHeader>
               <CardContent>
-              <DetailRow label="Project">
+              <DetailRow label="Projeto">
                 {project ? <Link to={`/projects/${projectRef}`} className="hover:underline">{project.name}</Link> : <MonoValue value={workspace.projectId} />}
               </DetailRow>
               <DetailRow label="Project workspace">
@@ -856,7 +856,7 @@ export function ExecutionWorkspaceDetail() {
                 <CardDescription>Paths and refs</CardDescription>
               </CardHeader>
               <CardContent>
-              <DetailRow label="Working dir">
+              <DetailRow label="Diretório de trabalho">
                 {workspace.cwd ? <MonoValue value={workspace.cwd} copy /> : "None"}
               </DetailRow>
               <DetailRow label="Provider ref">
@@ -879,7 +879,7 @@ export function ExecutionWorkspaceDetail() {
                   "None"
                 )}
               </DetailRow>
-              <DetailRow label="Base ref">
+              <DetailRow label="Ref base">
                 {workspace.baseRef ? <MonoValue value={workspace.baseRef} copy /> : "None"}
               </DetailRow>
               <DetailRow label="Branch">
@@ -890,7 +890,7 @@ export function ExecutionWorkspaceDetail() {
               <DetailRow label="Cleanup">
                 {workspace.cleanupEligibleAt
                   ? `${formatDateTime(workspace.cleanupEligibleAt)}${workspace.cleanupReason ? ` · ${workspace.cleanupReason}` : ""}`
-                  : "Not scheduled"}
+                  : "Não agendado"}
               </DetailRow>
               </CardContent>
             </Card>
@@ -908,7 +908,7 @@ export function ExecutionWorkspaceDetail() {
               <p className="text-sm text-destructive">
                 {workspaceOperationsQuery.error instanceof Error
                   ? workspaceOperationsQuery.error.message
-                  : "Failed to load workspace operations."}
+                  : "Falha ao carregar operações do espaço."}
               </p>
             ) : workspaceOperationsQuery.data && workspaceOperationsQuery.data.length > 0 ? (
               <div className="space-y-3">

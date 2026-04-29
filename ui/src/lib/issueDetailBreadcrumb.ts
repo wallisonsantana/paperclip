@@ -124,8 +124,8 @@ function inferIssueDetailSource(
 }
 
 function breadcrumbForSource(source: IssueDetailSource): IssueDetailBreadcrumb {
-  if (source === "inbox") return { label: "Inbox", href: "/inbox" };
-  return { label: "Issues", href: "/issues" };
+  if (source === "inbox") return { label: "Caixa de Entrada", href: "/inbox" };
+  return { label: "Tarefas", href: "/issues" };
 }
 
 export function createIssueDetailLocationState(

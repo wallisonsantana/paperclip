@@ -190,7 +190,7 @@ export function DocumentDiffModal({
                 onValueChange={(value) => setLeftRevisionId(value)}
               >
                 <SelectTrigger className="h-7 w-60 text-xs border-border/60">
-                  <SelectValue placeholder="Select revision" />
+                  <SelectValue placeholder="Selecionar revisão" />
                 </SelectTrigger>
                 <SelectContent>
                   {sortedRevisions.map((revision) => (
@@ -208,7 +208,7 @@ export function DocumentDiffModal({
                 onValueChange={(value) => setRightRevisionId(value)}
               >
                 <SelectTrigger className="h-7 w-60 text-xs border-border/60">
-                  <SelectValue placeholder="Select revision" />
+                  <SelectValue placeholder="Selecionar revisão" />
                 </SelectTrigger>
                 <SelectContent>
                   {sortedRevisions.map((revision) => (

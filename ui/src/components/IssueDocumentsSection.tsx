@@ -367,9 +367,9 @@ export function IssueDocumentsSection({
 
     if (!normalizedKey || !normalizedBody) {
       if (currentDraft.isNew) {
-        setError("Document key and body are required");
+        setError("Chave e corpo do documento são obrigatórios");
       } else if (!normalizedBody) {
-        setError("Document body cannot be empty");
+        setError("O corpo do documento não pode ser vazio");
       }
       if (options?.trackAutosave) {
         resetAutosaveState();
@@ -457,7 +457,7 @@ export function IssueDocumentsSection({
           resetAutosaveState();
           return false;
         } catch {
-          setError("Document changed remotely and the latest version could not be loaded");
+          setError("O documento mudou remotamente e a versão mais recente não pôde ser carregada");
           return false;
         }
       }
@@ -522,7 +522,7 @@ export function IssueDocumentsSection({
         setCopiedDocumentKey((current) => current === key ? null : current);
       }, 1400);
     } catch {
-      setError("Could not copy document");
+      setError("Não foi possível copiar o documento");
     }
   }, []);
 
@@ -733,7 +733,7 @@ export function IssueDocumentsSection({
               onChange={(event) =>
                 setDraft((current) => current ? { ...current, title: event.target.value } : current)
               }
-              placeholder="Optional title"
+              placeholder="Título opcional"
             />
           )}
           <MarkdownEditor
@@ -741,7 +741,7 @@ export function IssueDocumentsSection({
             onChange={(body) =>
               setDraft((current) => current ? { ...current, body } : current)
             }
-            placeholder="Markdown body"
+            placeholder="Corpo em markdown"
             bordered={false}
             className="bg-transparent"
             contentClassName="min-h-[220px] text-[15px] leading-7"
@@ -759,7 +759,7 @@ export function IssueDocumentsSection({
               onClick={() => void commitDraft(draft, { clearAfterSave: false, trackAutosave: false })}
               disabled={upsertDocument.isPending}
             >
-              {upsertDocument.isPending ? "Saving..." : "Create document"}
+              {upsertDocument.isPending ? "Salvando..." : "Create document"}
             </Button>
           </div>
         </div>
@@ -903,7 +903,7 @@ export function IssueDocumentsSection({
                       "text-muted-foreground transition-colors",
                       copiedDocumentKey === doc.key && "text-foreground",
                     )}
-                    title={copiedDocumentKey === doc.key ? "Copied" : "Copy document"}
+                    title={copiedDocumentKey === doc.key ? "Copiado" : "Copiar documento"}
                     onClick={() => void copyDocumentBody(doc.key, displayedBody)}
                   >
                     {copiedDocumentKey === doc.key ? (
@@ -918,7 +918,7 @@ export function IssueDocumentsSection({
                         variant="ghost"
                         size="icon-xs"
                         className="text-muted-foreground"
-                        title="Document actions"
+                        title="Ações do documento"
                       >
                         <MoreHorizontal className="h-3.5 w-3.5" />
                       </Button>
@@ -1005,7 +1005,7 @@ export function IssueDocumentsSection({
                           >
                             {restoreDocumentRevision.isPending && restoreDocumentRevision.variables?.key === doc.key
                               ? "Restoring..."
-                              : "Restore this revision"}
+                              : "Restaurar esta revisão"}
                           </Button>
                         </div>
                       </div>
@@ -1032,7 +1032,7 @@ export function IssueDocumentsSection({
                               )
                             }
                           >
-                            {activeConflict.showRemote ? "Hide remote" : "Review remote"}
+                            {activeConflict.showRemote ? "Ocultar remoto" : "Revisar remoto"}
                           </Button>
                           <Button
                             variant="outline"
@@ -1053,7 +1053,7 @@ export function IssueDocumentsSection({
                             onClick={() => void overwriteDocumentFromDraft(doc.key)}
                             disabled={upsertDocument.isPending}
                           >
-                            {upsertDocument.isPending ? "Saving..." : "Overwrite remote"}
+                            {upsertDocument.isPending ? "Salvando..." : "Sobrescrever remoto"}
                           </Button>
                         </div>
                       </div>
@@ -1079,7 +1079,7 @@ export function IssueDocumentsSection({
                         markDocumentDirty(doc.key);
                         setDraft((current) => current ? { ...current, title: event.target.value } : current);
                       }}
-                      placeholder="Optional title"
+                      placeholder="Título opcional"
                     />
                   )}
                   <div
@@ -1103,7 +1103,7 @@ export function IssueDocumentsSection({
                             return current;
                           });
                         }}
-                        placeholder="Markdown body"
+                        placeholder="Corpo em markdown"
                         bordered={false}
                         className="bg-transparent"
                         contentClassName={documentBodyContentClassName}
@@ -1130,7 +1130,7 @@ export function IssueDocumentsSection({
                       } ${activeDraft || isHistoricalPreview ? "opacity-100" : "opacity-0"}`}
                     >
                       {isHistoricalPreview
-                        ? "Viewing historical revision"
+                        ? "Visualizando revisão antiga"
                         : activeDraft
                           ? activeConflict
                           ? "Out of date"
@@ -1140,7 +1140,7 @@ export function IssueDocumentsSection({
                               : autosaveState === "saved"
                                 ? "Saved"
                                 : autosaveState === "error"
-                                  ? "Could not save"
+                                  ? "Não foi possível salvar"
                                   : ""
                             : ""
                           : ""}
@@ -1179,7 +1179,7 @@ export function IssueDocumentsSection({
                       onClick={() => deleteDocument.mutate(doc.key)}
                       disabled={deleteDocument.isPending}
                     >
-                      {deleteDocument.isPending ? "Deleting..." : "Delete"}
+                      {deleteDocument.isPending ? "Deleting..." : "Excluir"}
                     </Button>
                   </div>
                 </div>

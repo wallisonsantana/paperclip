@@ -13,7 +13,7 @@ export function InstanceExperimentalSettings() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Instance Settings" },
+      { label: "Configurações da Instância" },
       { label: "Experimental" },
     ]);
   }, [setBreadcrumbs]);

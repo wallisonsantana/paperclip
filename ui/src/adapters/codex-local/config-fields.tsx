@@ -43,7 +43,7 @@ export function CodexLocalConfigFields({
   return (
     <>
       {!hideInstructionsFile && (
-        <Field label="Agent instructions file" hint={instructionsFileHint}>
+        <Field label="Arquivo de instruções do agente" hint={instructionsFileHint}>
           <div className="flex items-center gap-2">
             <DraftInput
               value={
@@ -69,7 +69,7 @@ export function CodexLocalConfigFields({
         </Field>
       )}
       <ToggleField
-        label="Bypass sandbox"
+        label="Ignorar sandbox"
         hint={help.dangerouslyBypassSandbox}
         checked={
           isCreate
@@ -87,7 +87,7 @@ export function CodexLocalConfigFields({
         }
       />
       <ToggleField
-        label="Enable search"
+        label="Ativar busca"
         hint={help.search}
         checked={
           isCreate
@@ -101,7 +101,7 @@ export function CodexLocalConfigFields({
         }
       />
       <ToggleField
-        label="Fast mode"
+        label="Modo rápido"
         hint={help.fastMode}
         checked={fastModeEnabled}
         onChange={(v) =>

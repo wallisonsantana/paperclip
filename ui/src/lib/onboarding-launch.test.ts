@@ -36,7 +36,7 @@ describe("selectDefaultCompanyGoalId", () => {
         {
           id: "goal-1",
           companyId: "company-1",
-          title: "Earliest active root",
+          title: "Raiz ativa mais antiga",
           description: null,
           level: "company",
           status: "active",
@@ -55,7 +55,7 @@ describe("selectDefaultCompanyGoalId", () => {
         {
           id: "goal-2",
           companyId: "company-1",
-          title: "Cancelled root",
+          title: "Raiz cancelada",
           description: null,
           level: "company",
           status: "cancelled",
@@ -115,14 +115,14 @@ describe("onboarding launch payloads", () => {
 
     expect(
       buildOnboardingIssuePayload({
-        title: "Task",
+        title: "Tarefa",
         description: "",
         assigneeAgentId: "agent-1",
         projectId: "project-1",
         goalId: null,
       }),
     ).toEqual({
-      title: "Task",
+      title: "Tarefa",
       assigneeAgentId: "agent-1",
       projectId: "project-1",
       status: "todo",

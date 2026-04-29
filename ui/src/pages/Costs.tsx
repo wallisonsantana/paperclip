@@ -132,7 +132,7 @@ function FinanceSummaryCard({
         <MetricTile
           label="Net"
           value={formatCents(netCents)}
-          subtitle="Debit minus credit for the selected period"
+          subtitle="Débito menos crédito do período selecionado"
           icon={ReceiptText}
         />
         <MetricTile
@@ -168,7 +168,7 @@ export function Costs() {
   } = useDateRange();
 
   useEffect(() => {
-    setBreadcrumbs([{ label: "Costs" }]);
+    setBreadcrumbs([{ label: "Custos" }]);
   }, [setBreadcrumbs]);
 
   const [today, setToday] = useState(() => new Date().toDateString());
@@ -541,7 +541,7 @@ export function Costs() {
       <div className="space-y-5">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div>
-                <h1 className="text-3xl font-semibold tracking-tight">Costs</h1>
+                <h1 className="text-3xl font-semibold tracking-tight">Custos</h1>
                 <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
                   Inference spend, platform fees, credits, and live quota windows.
                 </p>
@@ -598,7 +598,7 @@ export function Costs() {
                   ? `${budgetData?.pausedAgentCount ?? 0} agents paused · ${budgetData?.pausedProjectCount ?? 0} projects paused`
                   : spendData?.summary.budgetCents && spendData.summary.budgetCents > 0
                     ? `${formatCents(spendData.summary.spendCents)} of ${formatCents(spendData.summary.budgetCents)}`
-                    : "No monthly cap configured"
+                    : "Sem limite mensal configurado"
               }
               icon={Coins}
             />
@@ -671,7 +671,7 @@ export function Costs() {
                         <div className="mt-1 text-sm text-muted-foreground">
                           {spendData?.summary.budgetCents && spendData.summary.budgetCents > 0
                             ? `Budget ${formatCents(spendData.summary.budgetCents)}`
-                            : "Unlimited budget"}
+                            : "Orçamento ilimitado"}
                         </div>
                       </div>
                       <div className="border border-border px-4 py-3 text-right">
@@ -847,27 +847,27 @@ export function Costs() {
                 </CardHeader>
                 <CardContent className="grid gap-3 px-5 pb-5 pt-0 md:grid-cols-4">
                   <MetricTile
-                    label="Active incidents"
+                    label="Incidentes ativos"
                     value={String(activeBudgetIncidents.length)}
-                    subtitle="Open soft or hard threshold crossings"
+                    subtitle="Cruzamentos de limite suave ou rígido em aberto"
                     icon={ReceiptText}
                   />
                   <MetricTile
-                    label="Pending approvals"
+                    label="Aprovações pendentes"
                     value={String(budgetData?.pendingApprovalCount ?? 0)}
-                    subtitle="Budget override approvals awaiting board action"
+                    subtitle="Aprovações de substituição de orçamento aguardando ação"
                     icon={ArrowUpRight}
                   />
                   <MetricTile
-                    label="Paused agents"
+                    label="Agentes pausados"
                     value={String(budgetData?.pausedAgentCount ?? 0)}
-                    subtitle="Agent heartbeats blocked by budget"
+                    subtitle="Heartbeats de agentes bloqueados por orçamento"
                     icon={Coins}
                   />
                   <MetricTile
-                    label="Paused projects"
+                    label="Projetos pausados"
                     value={String(budgetData?.pausedProjectCount ?? 0)}
-                    subtitle="Project execution blocked by budget"
+                    subtitle="Execução de projeto bloqueada por orçamento"
                     icon={DollarSign}
                   />
                 </CardContent>
@@ -912,7 +912,7 @@ export function Costs() {
                           {scopeType === "company"
                             ? "Company-wide monthly policy."
                             : scopeType === "agent"
-                              ? "Recurring monthly spend policies for individual agents."
+                              ? "Políticas de gastos mensais recorrentes para agentes individuais."
                               : "Lifetime spend policies for execution-bound projects."}
                         </p>
                       </div>

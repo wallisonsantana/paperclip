@@ -37,8 +37,8 @@ export function InstanceGeneralSettings() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Instance Settings" },
-      { label: "General" },
+      { label: "Configurações da Instância" },
+      { label: "Geral" },
     ]);
   }, [setBreadcrumbs]);
 
@@ -87,7 +87,7 @@ export function InstanceGeneralSettings() {
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <SlidersHorizontal className="h-5 w-5 text-muted-foreground" />
-          <h1 className="text-lg font-semibold">General</h1>
+          <h1 className="text-lg font-semibold">Geral</h1>
         </div>
         <p className="text-sm text-muted-foreground">
           Configure instance-wide preferences including log display, keyboard shortcuts, backup
@@ -119,16 +119,16 @@ export function InstanceGeneralSettings() {
           </div>
           <div className="grid gap-3 md:grid-cols-3">
             <StatusBox
-              label="Auth readiness"
+              label="Pronto para auth"
               value={healthQuery.data?.authReady ? "Ready" : "Not ready"}
             />
             <StatusBox
-              label="Bootstrap status"
+              label="Status do bootstrap"
               value={healthQuery.data?.bootstrapStatus === "bootstrap_pending" ? "Setup required" : "Ready"}
             />
             <StatusBox
-              label="Bootstrap invite"
-              value={healthQuery.data?.bootstrapInviteActive ? "Active" : "None"}
+              label="Convite de bootstrap"
+              value={healthQuery.data?.bootstrapInviteActive ? "Ativo" : "Nenhum"}
             />
           </div>
         </div>
@@ -302,7 +302,7 @@ export function InstanceGeneralSettings() {
             {[
               {
                 value: "allowed",
-                label: "Always allow",
+                label: "Sempre permitir",
                 description: "Share voted AI outputs automatically.",
               },
               {
@@ -352,7 +352,7 @@ export function InstanceGeneralSettings() {
       <section className="rounded-xl border border-border bg-card p-5">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1.5">
-            <h2 className="text-sm font-semibold">Sign out</h2>
+            <h2 className="text-sm font-semibold">Sair</h2>
             <p className="max-w-2xl text-sm text-muted-foreground">
               Sign out of this Paperclip instance. You will be redirected to the login page.
             </p>
@@ -364,7 +364,7 @@ export function InstanceGeneralSettings() {
             onClick={() => signOutMutation.mutate()}
           >
             <LogOut className="size-4" />
-            {signOutMutation.isPending ? "Signing out..." : "Sign out"}
+            {signOutMutation.isPending ? "Saindo..." : "Sair"}
           </Button>
         </div>
       </section>

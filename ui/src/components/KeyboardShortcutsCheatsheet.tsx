@@ -12,26 +12,26 @@ interface ShortcutSection {
 
 const sections: ShortcutSection[] = [
   {
-    title: "Inbox",
+    title: "Caixa de Entrada",
     shortcuts: [
-      { keys: ["j"], label: "Move down" },
-      { keys: ["↓"], label: "Move down" },
-      { keys: ["k"], label: "Move up" },
-      { keys: ["↑"], label: "Move up" },
-      { keys: ["←"], label: "Collapse selected group" },
-      { keys: ["→"], label: "Expand selected group" },
+      { keys: ["j"], label: "Mover para baixo" },
+      { keys: ["↓"], label: "Mover para baixo" },
+      { keys: ["k"], label: "Mover para cima" },
+      { keys: ["↑"], label: "Mover para cima" },
+      { keys: ["←"], label: "Recolher grupo selecionado" },
+      { keys: ["→"], label: "Expandir grupo selecionado" },
       { keys: ["Enter"], label: "Open selected item" },
-      { keys: ["a"], label: "Archive item" },
-      { keys: ["y"], label: "Archive item" },
-      { keys: ["r"], label: "Mark as read" },
-      { keys: ["U"], label: "Mark as unread" },
+      { keys: ["a"], label: "Arquivar item" },
+      { keys: ["y"], label: "Arquivar item" },
+      { keys: ["r"], label: "Marcar como lida" },
+      { keys: ["U"], label: "Marcar como não lida" },
     ],
   },
   {
     title: "Issue detail",
     shortcuts: [
       { keys: ["y"], label: "Quick-archive back to inbox" },
-      { keys: ["g", "i"], label: "Go to inbox" },
+      { keys: ["g", "i"], label: "Ir para a caixa" },
       { keys: ["g", "c"], label: "Focus comment composer" },
     ],
   },
@@ -39,7 +39,7 @@ const sections: ShortcutSection[] = [
     title: "Global",
     shortcuts: [
       { keys: ["/"], label: "Search current page or quick search" },
-      { keys: ["c"], label: "New issue" },
+      { keys: ["c"], label: "Nova tarefa" },
       { keys: ["["], label: "Toggle sidebar" },
       { keys: ["]"], label: "Toggle panel" },
       { keys: ["?"], label: "Show keyboard shortcuts" },

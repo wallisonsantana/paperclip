@@ -118,7 +118,7 @@ export function ApprovalCard({
                   onClick={onApprove}
                   disabled={isPending}
                 >
-                  {pendingAction === "approve" ? "Approving..." : "Approve"}
+                  {pendingAction === "approve" ? "Approving..." : "Aprovar"}
                 </Button>
                 <Button
                   variant="destructive"
@@ -126,7 +126,7 @@ export function ApprovalCard({
                   onClick={onReject}
                   disabled={isPending}
                 >
-                  {pendingAction === "reject" ? "Rejecting..." : "Reject"}
+                  {pendingAction === "reject" ? "Rejecting..." : "Rejeitar"}
                 </Button>
               </>
             )}

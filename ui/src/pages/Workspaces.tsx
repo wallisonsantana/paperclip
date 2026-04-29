@@ -103,7 +103,7 @@ export function Workspaces() {
   });
 
   useEffect(() => {
-    setBreadcrumbs([{ label: "Workspaces" }]);
+    setBreadcrumbs([{ label: "Espaços de Trabalho" }]);
   }, [setBreadcrumbs]);
 
   const groups = useMemo(
@@ -121,7 +121,7 @@ export function Workspaces() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold">Workspaces</h2>
+        <h2 className="text-xl font-bold">Espaços de Trabalho</h2>
       </div>
 
       {groups.length === 0 ? (

@@ -784,10 +784,10 @@ describe("inbox helpers", () => {
 
   it("returns archived search matches that are not already visible in the inbox", () => {
     const visibleIssue = makeIssue("visible", false);
-    visibleIssue.title = "Alpha visible task";
+    visibleIssue.title = "Tarefa alpha visível";
 
     const archivedMatch = makeIssue("archived-match", false);
-    archivedMatch.title = "Alpha archived task";
+    archivedMatch.title = "Tarefa alpha arquivada";
 
     const archivedMiss = makeIssue("archived-miss", false);
     archivedMiss.title = "Different task";
@@ -1188,10 +1188,10 @@ describe("inbox helpers", () => {
 
     expect(groupInboxWorkItems(items, "none")).toEqual([{ key: "__all", label: null, items }]);
     expect(groupInboxWorkItems(items, "type")).toEqual([
-      { key: "issue", label: "Issues", items: [items[1], items[2]] },
-      { key: "approval", label: "Approvals", items: [items[0]] },
-      { key: "failed_run", label: "Failed runs", items: [items[3]] },
-      { key: "join_request", label: "Join requests", items: [items[4]] },
+      { key: "issue", label: "Tarefas", items: [items[1], items[2]] },
+      { key: "approval", label: "Aprovações", items: [items[0]] },
+      { key: "failed_run", label: "Execuções com falha", items: [items[3]] },
+      { key: "join_request", label: "Pedidos de acesso", items: [items[4]] },
     ]);
   });
 
@@ -1240,7 +1240,7 @@ describe("inbox helpers", () => {
         label: "Primary workspace (default)",
         items: [items[0], items[2]],
       },
-      { key: "kind:approval", label: "Approvals", items: [items[1]] },
+      { key: "kind:approval", label: "Aprovações", items: [items[1]] },
     ]);
   });
 

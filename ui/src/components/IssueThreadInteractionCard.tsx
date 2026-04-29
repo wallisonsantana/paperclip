@@ -57,7 +57,7 @@ function resolveActorLabel(args: {
     return agentMap?.get(agentId)?.name ?? agentId.slice(0, 8);
   }
   if (userId) {
-    return formatAssigneeUserLabel(userId, currentUserId, userLabelMap) ?? "Board";
+    return formatAssigneeUserLabel(userId, currentUserId, userLabelMap) ?? "Painel";
   }
   return "Unknown";
 }
@@ -86,7 +86,7 @@ function interactionKindLabel(kind: IssueThreadInteraction["kind"]) {
     case "suggest_tasks":
       return "Suggested tasks";
     case "ask_user_questions":
-      return "Ask user questions";
+      return "Fazer perguntas ao usuário";
     case "request_confirmation":
       return "Confirmation";
     default:
@@ -277,16 +277,16 @@ function TaskTreeNode({
         {hasMetadata ? (
           <div className="mt-2 flex flex-wrap gap-1.5">
             {hasExplicitAssignee ? (
-              <TaskField label="Assignee" value={assigneeLabel} />
+              <TaskField label="Responsável" value={assigneeLabel} />
             ) : null}
             {node.task.billingCode ? (
               <TaskField label="Billing" value={node.task.billingCode} />
             ) : null}
             {node.task.projectId ? (
-              <TaskField label="Project" value={node.task.projectId} tone="subtle" />
+              <TaskField label="Projeto" value={node.task.projectId} tone="subtle" />
             ) : null}
             {labels.map((label) => (
-              <TaskField key={label} label="Label" value={label} tone="subtle" />
+              <TaskField key={label} label="Rótulo" value={label} tone="subtle" />
             ))}
           </div>
         ) : null}
@@ -523,7 +523,7 @@ function SuggestTasksCard({
                     Accepting...
                   </>
                 ) : (
-                  selectedCount === totalTasks ? "Accept drafts" : "Accept selected drafts"
+                  selectedCount === totalTasks ? "Aceitar rascunhos" : "Aceitar rascunhos selecionados"
                 )}
               </Button>
               <Button
@@ -552,7 +552,7 @@ function SuggestTasksCard({
               <Textarea
                 value={rejectReason}
                 onChange={(event) => setRejectReason(event.target.value)}
-                placeholder="Add a short reason for rejecting this suggestion"
+                placeholder="Adicione um motivo curto para rejeitar esta sugestão"
                 className="min-h-24 bg-background text-sm"
               />
               <div className="flex justify-end">
@@ -568,7 +568,7 @@ function SuggestTasksCard({
                       Saving...
                     </>
                   ) : (
-                    "Save rejection"
+                    "Salvar rejeição"
                   )}
                 </Button>
               </div>
@@ -739,7 +739,7 @@ function AskUserQuestionsCard({
                 </div>
                 <TaskField
                   label={question.selectionMode === "single" ? "Pick" : "Pick many"}
-                  value={question.required ? "Required" : "Optional"}
+                  value={question.required ? "Obrigatório" : "Opcional"}
                   tone="subtle"
                 />
               </div>
@@ -998,7 +998,7 @@ function RequestConfirmationCard({
   const declineReasonInvalid = rejectRequiresReason && !canReject;
   const declineReasonPlaceholder =
     interaction.payload.declineReasonPlaceholder
-    ?? (interaction.payload.acceptLabel === "Approve plan"
+    ?? (interaction.payload.acceptLabel === "Aprovar plano"
       ? "Optional: what would you like revised?"
       : "Optional: tell the agent what you'd change.");
 
@@ -1074,7 +1074,7 @@ function RequestConfirmationCard({
                   Confirming...
                 </>
               ) : (
-                interaction.payload.acceptLabel ?? "Confirm"
+                interaction.payload.acceptLabel ?? "Confirmar"
               )}
             </Button>
             <Button
@@ -1090,7 +1090,7 @@ function RequestConfirmationCard({
                 setRejecting((current) => !current);
               }}
             >
-              {interaction.payload.rejectLabel ?? "Decline"}
+              {interaction.payload.rejectLabel ?? "Recusar"}
             </Button>
           </div>
 
@@ -1134,7 +1134,7 @@ function RequestConfirmationCard({
                       Saving...
                     </>
                   ) : (
-                    interaction.payload.rejectLabel ?? "Decline"
+                    interaction.payload.rejectLabel ?? "Recusar"
                   )}
                 </Button>
               </div>
@@ -1199,8 +1199,8 @@ export function IssueThreadInteractionCard({
               <span className="inline-flex items-center gap-1 rounded-sm border border-border/70 bg-transparent px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-foreground/70">
                 <ListChecks className="h-3.5 w-3.5" />
                 {interaction.continuationPolicy === "wake_assignee_on_accept"
-                  ? "Wakes on confirm"
-                  : "Wakes assignee"}
+                  ? "Acorda ao confirmar"
+                  : "Acorda responsável"}
               </span>
             ) : null}
           </div>
@@ -1210,8 +1210,8 @@ export function IssueThreadInteractionCard({
               ?? (interaction.kind === "suggest_tasks"
                 ? "Suggested task tree"
                 : interaction.kind === "ask_user_questions"
-                  ? interaction.payload.title ?? "Questions for the operator"
-                  : "Confirmation requested")}
+                  ? interaction.payload.title ?? "Perguntas para o operador"
+                  : "Confirmação solicitada")}
           </div>
           {interaction.summary ? (
             <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">

@@ -36,7 +36,7 @@ function createIssue(overrides: Partial<Issue>): Issue {
     projectWorkspaceId: overrides.projectWorkspaceId ?? null,
     goalId: overrides.goalId ?? null,
     parentId: overrides.parentId ?? null,
-    title: overrides.title ?? "Issue",
+    title: overrides.title ?? "Tarefa",
     description: overrides.description ?? null,
     status: overrides.status ?? "todo",
     priority: overrides.priority ?? "medium",

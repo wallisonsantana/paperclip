@@ -272,10 +272,10 @@ function ActorIdentity({ evt, agentMap, userProfileMap }: { evt: ActivityEvent; 
     const agent = agentMap.get(id);
     return <Identity name={agent?.name ?? id.slice(0, 8)} size="sm" />;
   }
-  if (evt.actorType === "system") return <Identity name="System" size="sm" />;
+  if (evt.actorType === "system") return <Identity name="Sistema" size="sm" />;
   if (evt.actorType === "user") {
     const profile = userProfileMap?.get(id);
-    return <Identity name={profile?.label ?? "Board"} avatarUrl={profile?.image} size="sm" />;
+    return <Identity name={profile?.label ?? "Painel"} avatarUrl={profile?.image} size="sm" />;
   }
   return <Identity name={id || "Unknown"} size="sm" />;
 }
@@ -450,7 +450,7 @@ function InboxMobileToolbar({
             navigate(backHref);
           }
         }}
-        aria-label="Back to inbox"
+        aria-label="Voltar à caixa de entrada"
       >
         <ArrowLeft className="h-5 w-5" />
       </Button>
@@ -462,7 +462,7 @@ function InboxMobileToolbar({
             size="icon-sm"
             onClick={onArchive}
             disabled={archivePending}
-            aria-label="Archive from inbox"
+            aria-label="Arquivar da caixa"
           >
             <Archive className="h-5 w-5" />
           </Button>
@@ -470,7 +470,7 @@ function InboxMobileToolbar({
 
         <Popover open={menuOpen} onOpenChange={setMenuOpen}>
           <PopoverTrigger asChild>
-            <Button variant="ghost" size="icon-sm" aria-label="More actions">
+            <Button variant="ghost" size="icon-sm" aria-label="Mais ações">
               <MoreVertical className="h-5 w-5" />
             </Button>
           </PopoverTrigger>
@@ -929,7 +929,7 @@ function IssueDetailActivityTab({
         </div>
       )}
       {!activity || activity.length === 0 ? (
-        <p className="text-xs text-muted-foreground">No activity yet.</p>
+        <p className="text-xs text-muted-foreground">Nenhuma atividade ainda.</p>
       ) : (
         <div className="space-y-1.5">
           {activity.slice(0, 20).map((evt) => (
@@ -1070,7 +1070,7 @@ export function IssueDetail() {
     }
   }, [hasLiveRuns, locallyQueuedCommentRunIds.size]);
   const sourceBreadcrumb = useMemo(
-    () => readIssueDetailBreadcrumb(issueId, location.state, location.search) ?? { label: "Issues", href: "/issues" },
+    () => readIssueDetailBreadcrumb(issueId, location.state, location.search) ?? { label: "Tarefas", href: "/issues" },
     [issueId, location.state, location.search],
   );
 
@@ -1209,7 +1209,7 @@ export function IssueDetail() {
       options.push({ id: `agent:${agent.id}`, label: agent.name });
     }
     if (currentUserId) {
-      options.push({ id: `user:${currentUserId}`, label: "Me" });
+      options.push({ id: `user:${currentUserId}`, label: "Eu" });
     }
     return options;
   }, [agents, companyMembers?.users, currentUserId]);
@@ -1233,7 +1233,7 @@ export function IssueDetail() {
     () => mergeIssueComments(comments ?? [], optimisticComments),
     [comments, optimisticComments],
   );
-  const breadcrumbTitle = issue?.title ?? issueId ?? "Issue";
+  const breadcrumbTitle = issue?.title ?? issueId ?? "Tarefa";
 
   const invalidateIssueDetail = useCallback(() => {
     queryClient.invalidateQueries({ queryKey: queryKeys.issues.detail(issueId!) });
@@ -1427,13 +1427,13 @@ export function IssueDetail() {
         queryClient.invalidateQueries({ queryKey: queryKeys.approvals.list(resolvedCompanyId) });
       }
       pushToast({
-        title: variables.action === "approve" ? "Approval approved" : "Approval rejected",
+        title: variables.action === "approve" ? "Aprovação concedida" : "Aprovação rejeitada",
         tone: "success",
       });
     },
     onError: (err, variables) => {
       pushToast({
-        title: variables.action === "approve" ? "Approval failed" : "Rejection failed",
+        title: variables.action === "approve" ? "Falha na aprovação" : "Rejection failed",
         body: err instanceof Error ? err.message : "Unable to update approval",
         tone: "error",
       });
@@ -1495,7 +1495,7 @@ export function IssueDetail() {
           return;
         } catch (err) {
           pushToast({
-            title: "Cancel failed",
+            title: "Falha ao cancelar",
             body: err instanceof Error ? err.message : "Unable to cancel the queued comment",
             tone: "error",
           });
@@ -1576,7 +1576,7 @@ export function IssueDetail() {
     },
     onError: (err) => {
       pushToast({
-        title: "Accept failed",
+        title: "Falha ao aceitar",
         body: err instanceof Error ? err.message : "Unable to accept the suggested tasks",
         tone: "error",
       });
@@ -1615,7 +1615,7 @@ export function IssueDetail() {
       invalidateIssueDetail();
       invalidateIssueCollections();
       pushToast({
-        title: "Answers submitted",
+        title: "Respostas enviadas",
         tone: "success",
       });
     },
@@ -1699,7 +1699,7 @@ export function IssueDetail() {
           return;
         } catch (err) {
           pushToast({
-            title: "Cancel failed",
+            title: "Falha ao cancelar",
             body: err instanceof Error ? err.message : "Unable to cancel the queued comment",
             tone: "error",
           });
@@ -1850,7 +1850,7 @@ export function IssueDetail() {
     },
     onError: (err) => {
       pushToast({
-        title: "Cancel failed",
+        title: "Falha ao cancelar",
         body: err instanceof Error ? err.message : "Unable to cancel the queued comment",
         tone: "error",
       });
@@ -1939,7 +1939,7 @@ export function IssueDetail() {
       }
       pushToast({
         title: "Failed to save feedback",
-        body: err instanceof Error ? err.message : "Unknown error",
+        body: err instanceof Error ? err.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -1993,7 +1993,7 @@ export function IssueDetail() {
       invalidateIssueDetail();
     },
     onError: (err) => {
-      setAttachmentError(err instanceof Error ? err.message : "Delete failed");
+      setAttachmentError(err instanceof Error ? err.message : "Falha ao excluir");
     },
   });
 
@@ -2006,7 +2006,7 @@ export function IssueDetail() {
     },
     onError: (err) => {
       pushToast({
-        title: "Archive failed",
+        title: "Falha ao arquivar",
         body: err instanceof Error ? err.message : "Unable to archive this issue from the inbox",
         tone: "error",
       });
@@ -2262,7 +2262,7 @@ export function IssueDetail() {
     const md = `# ${issue.identifier}: ${title}\n\n${body}`.trimEnd();
     await navigator.clipboard.writeText(md);
     setCopied(true);
-    pushToast({ title: "Copied to clipboard", tone: "success" });
+    pushToast({ title: "Copiado para a área de transferência", tone: "success" });
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -2548,7 +2548,7 @@ export function IssueDetail() {
                 variant="ghost"
                 size="icon-xs"
                 onClick={copyIssueToClipboard}
-                title="Copy issue as markdown"
+                title="Copiar tarefa como markdown"
               >
                 {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
               </Button>
@@ -2572,8 +2572,8 @@ export function IssueDetail() {
                   if (!archivePending && issue?.id) archiveFromInbox.mutate(issue.id);
                 }}
                 disabled={archivePending}
-                title="Archive from inbox"
-                aria-label="Archive from inbox"
+                title="Arquivar da caixa"
+                aria-label="Arquivar da caixa"
               >
                 <Archive className="h-4 w-4" />
               </Button>
@@ -2582,7 +2582,7 @@ export function IssueDetail() {
               variant="ghost"
               size="icon-xs"
               onClick={copyIssueToClipboard}
-              title="Copy issue as markdown"
+              title="Copiar tarefa como markdown"
             >
               {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
             </Button>
@@ -2831,7 +2831,7 @@ export function IssueDetail() {
                       e.stopPropagation();
                       setConfirmDeleteId(attachment.id);
                     }}
-                    title="Delete attachment"
+                    title="Excluir anexo"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
@@ -2860,7 +2860,7 @@ export function IssueDetail() {
                     className="text-muted-foreground hover:text-destructive"
                     onClick={() => deleteAttachment.mutate(attachment.id)}
                     disabled={deleteAttachment.isPending}
-                    title="Delete attachment"
+                    title="Excluir anexo"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>

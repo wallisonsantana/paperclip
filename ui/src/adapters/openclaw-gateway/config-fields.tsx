@@ -160,7 +160,7 @@ export function OpenClawGatewayConfigFields({
             />
           </Field>
 
-          <Field label="Session strategy">
+          <Field label="Estratégia de sessão">
             <select
               value={sessionStrategy}
               onChange={(e) => mark("adapterConfig", "sessionKeyStrategy", e.target.value)}
@@ -173,7 +173,7 @@ export function OpenClawGatewayConfigFields({
           </Field>
 
           {sessionStrategy === "fixed" && (
-            <Field label="Session key">
+            <Field label="Chave da sessão">
               <DraftInput
                 value={eff("adapterConfig", "sessionKey", String(config.sessionKey ?? "paperclip"))}
                 onCommit={(v) => mark("adapterConfig", "sessionKey", v || undefined)}
@@ -185,13 +185,13 @@ export function OpenClawGatewayConfigFields({
           )}
 
           <SecretField
-            label="Gateway auth token (x-openclaw-token)"
+            label="Token de autenticação do gateway (x-openclaw-token)"
             value={effectiveGatewayToken}
             onCommit={commitGatewayToken}
             placeholder="OpenClaw gateway token"
           />
 
-          <Field label="Role">
+          <Field label="Função">
             <DraftInput
               value={eff("adapterConfig", "role", String(config.role ?? "operator"))}
               onCommit={(v) => mark("adapterConfig", "role", v || undefined)}

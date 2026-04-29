@@ -21,8 +21,8 @@ export function InstanceAccess() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Instance Settings", href: "/instance/settings/general" },
-      { label: "Access" },
+      { label: "Configurações da Instância", href: "/instance/settings/general" },
+      { label: "Acesso" },
     ]);
   }, [setBreadcrumbs]);
 
@@ -64,7 +64,7 @@ export function InstanceAccess() {
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.access.userCompanyAccess(selectedUserId!) });
       await queryClient.invalidateQueries({ queryKey: queryKeys.access.adminUsers(search) });
-      pushToast({ title: "Company access updated", tone: "success" });
+      pushToast({ title: "Acesso da empresa atualizado", tone: "success" });
     },
   });
 
@@ -174,7 +174,7 @@ export function InstanceAccess() {
                   onClick={() => setAdminMutation.mutate(!(selectedUser?.isInstanceAdmin ?? false))}
                   disabled={setAdminMutation.isPending}
                 >
-                  {selectedUser?.isInstanceAdmin ? "Remove instance admin" : "Promote to instance admin"}
+                  {selectedUser?.isInstanceAdmin ? "Remover admin da instância" : "Promover a admin da instância"}
                 </Button>
               </div>
 
@@ -214,7 +214,7 @@ export function InstanceAccess() {
                     onClick={() => updateCompanyAccessMutation.mutate()}
                     disabled={updateCompanyAccessMutation.isPending}
                   >
-                    {updateCompanyAccessMutation.isPending ? "Saving…" : "Save company access"}
+                    {updateCompanyAccessMutation.isPending ? "Salvando…" : "Salvar acesso da empresa"}
                   </Button>
                 </div>
               </div>

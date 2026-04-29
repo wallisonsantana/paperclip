@@ -167,7 +167,7 @@ describe("buildAssistantPartsFromTranscript", () => {
 
   it("treats a completed tool-only segment as resolved once a tool_result arrives", () => {
     const result = buildAssistantPartsFromTranscript([
-      { kind: "thinking", ts: "2026-04-06T12:00:00.000Z", text: "Checking the task." },
+      { kind: "thinking", ts: "2026-04-06T12:00:00.000Z", text: "Verificando a tarefa." },
       {
         kind: "tool_call",
         ts: "2026-04-06T12:00:01.000Z",
@@ -186,7 +186,7 @@ describe("buildAssistantPartsFromTranscript", () => {
     ]);
 
     expect(result.parts).toMatchObject([
-      { type: "reasoning", text: "Checking the task." },
+      { type: "reasoning", text: "Verificando a tarefa." },
       {
         type: "tool-call",
         toolCallId: "tool-1",
@@ -245,14 +245,14 @@ describe("buildAssistantPartsFromTranscript", () => {
 
   it("preserves diff transcript output as a fenced diff block", () => {
     const result = buildAssistantPartsFromTranscript([
-      { kind: "assistant", ts: "2026-04-06T12:00:00.000Z", text: "Applied the patch." },
+      { kind: "assistant", ts: "2026-04-06T12:00:00.000Z", text: "Patch aplicado." },
       { kind: "diff", ts: "2026-04-06T12:00:01.000Z", changeType: "file_header", text: "ui/src/lib/issue-chat-messages.ts" },
       { kind: "diff", ts: "2026-04-06T12:00:02.000Z", changeType: "add", text: "+function formatDiffBlock(lines: string[]) {" },
       { kind: "diff", ts: "2026-04-06T12:00:03.000Z", changeType: "add", text: "+  return ````diff`;" },
     ]);
 
     expect(result.parts).toMatchObject([
-      { type: "text", text: "Applied the patch." },
+      { type: "text", text: "Patch aplicado." },
       {
         type: "text",
         text: [
@@ -454,7 +454,7 @@ describe("buildIssueChatMessages", () => {
         [
           "run-history-1",
           [
-            { kind: "thinking", ts: "2026-04-06T12:01:10.000Z", text: "Checking the current issue thread." },
+            { kind: "thinking", ts: "2026-04-06T12:01:10.000Z", text: "Verificando o thread da tarefa atual." },
             { kind: "assistant", ts: "2026-04-06T12:02:30.000Z", text: "Updated the thread renderer." },
           ],
         ],
@@ -478,7 +478,7 @@ describe("buildIssueChatMessages", () => {
       },
     });
     expect(messages[0]?.content).toMatchObject([
-      { type: "reasoning", text: "Checking the current issue thread." },
+      { type: "reasoning", text: "Verificando o thread da tarefa atual." },
       { type: "text", text: "Updated the thread renderer." },
     ]);
   });

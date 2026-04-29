@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 
 const priorityConfig: Record<string, { icon: typeof ArrowUp; color: string; label: string }> = {
   critical: { icon: AlertTriangle, color: priorityColor.critical ?? priorityColorDefault, label: "Critical" },
-  high: { icon: ArrowUp, color: priorityColor.high ?? priorityColorDefault, label: "High" },
-  medium: { icon: Minus, color: priorityColor.medium ?? priorityColorDefault, label: "Medium" },
-  low: { icon: ArrowDown, color: priorityColor.low ?? priorityColorDefault, label: "Low" },
+  high: { icon: ArrowUp, color: priorityColor.high ?? priorityColorDefault, label: "Alta" },
+  medium: { icon: Minus, color: priorityColor.medium ?? priorityColorDefault, label: "Média" },
+  low: { icon: ArrowDown, color: priorityColor.low ?? priorityColorDefault, label: "Baixa" },
 };
 
 const allPriorities = ["critical", "high", "medium", "low"];

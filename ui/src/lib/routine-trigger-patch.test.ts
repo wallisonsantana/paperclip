@@ -35,7 +35,7 @@ describe("buildRoutineTriggerPatch", () => {
     const patch = buildRoutineTriggerPatch(
       makeScheduleTrigger({ timezone: "UTC" }),
       {
-        label: "Daily label edit",
+        label: "Edição diária de rótulo",
         cronExpression: "0 10 * * *",
         signingMode: "bearer",
         replayWindowSec: "300",
@@ -44,7 +44,7 @@ describe("buildRoutineTriggerPatch", () => {
     );
 
     expect(patch).toEqual({
-      label: "Daily label edit",
+      label: "Edição diária de rótulo",
       cronExpression: "0 10 * * *",
       timezone: "UTC",
     });

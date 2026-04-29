@@ -45,7 +45,7 @@ export function ExecutionWorkspaceCloseDialog({
 }: ExecutionWorkspaceCloseDialogProps) {
   const queryClient = useQueryClient();
   const { pushToast } = useToastActions();
-  const actionLabel = currentStatus === "cleanup_failed" ? "Retry close" : "Close workspace";
+  const actionLabel = currentStatus === "cleanup_failed" ? "Tentar fechar novamente" : "Fechar espaço";
 
   const readinessQuery = useQuery({
     queryKey: queryKeys.executionWorkspaces.closeReadiness(workspaceId),
@@ -68,7 +68,7 @@ export function ExecutionWorkspaceCloseDialog({
     onError: (error) => {
       pushToast({
         title: "Failed to close workspace",
-        body: error instanceof Error ? error.message : "Unknown error",
+        body: error instanceof Error ? error.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -111,10 +111,10 @@ export function ExecutionWorkspaceCloseDialog({
             <div className={`rounded-xl border px-4 py-3 text-sm ${readinessTone(readiness.state)}`}>
               <div className="font-medium">
                 {readiness.state === "blocked"
-                  ? "Close is blocked"
+                  ? "Fechamento bloqueado"
                   : readiness.state === "ready_with_warnings"
-                    ? "Close is allowed with warnings"
-                    : "Close is ready"}
+                    ? "Fechamento permitido com avisos"
+                    : "Fechamento pronto"}
               </div>
               <div className="mt-1 text-xs opacity-80">
                 {readiness.isSharedWorkspace
@@ -123,7 +123,7 @@ export function ExecutionWorkspaceCloseDialog({
                     ? "This execution workspace has its own checkout path and can be archived independently."
                     : readiness.isProjectPrimaryWorkspace
                       ? "This execution workspace currently points at the project's primary workspace path."
-                      : "This workspace is disposable and can be archived."}
+                      : "Este espaço é descartável e pode ser arquivado."}
               </div>
             </div>
 
@@ -178,11 +178,11 @@ export function ExecutionWorkspaceCloseDialog({
                   <div className="grid gap-2 sm:grid-cols-2">
                     <div>
                       <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Branch</div>
-                      <div className="font-mono text-xs">{readiness.git.branchName ?? "Unknown"}</div>
+                      <div className="font-mono text-xs">{readiness.git.branchName ?? "Desconhecido"}</div>
                     </div>
                     <div>
                       <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Base ref</div>
-                      <div className="font-mono text-xs">{readiness.git.baseRef ?? "Not set"}</div>
+                      <div className="font-mono text-xs">{readiness.git.baseRef ?? "Não definido"}</div>
                     </div>
                     <div>
                       <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Merged into base</div>
@@ -236,7 +236,7 @@ export function ExecutionWorkspaceCloseDialog({
                         <span className="text-xs text-muted-foreground">{service.status} · {service.lifecycle}</span>
                       </div>
                       <div className="mt-1 break-words text-xs text-muted-foreground">
-                        {service.url ?? service.command ?? service.cwd ?? "No additional details"}
+                        {service.url ?? service.command ?? service.cwd ?? "Sem detalhes adicionais"}
                       </div>
                     </div>
                   ))}

@@ -11,7 +11,7 @@ describe("activity formatting", () => {
   it("formats blocker activity using linked issue identifiers", () => {
     const details = {
       addedBlockedByIssues: [
-        { id: "issue-2", identifier: "PAP-22", title: "Blocked task" },
+        { id: "issue-2", identifier: "PAP-22", title: "Tarefa bloqueada" },
       ],
       removedBlockedByIssues: [],
     };

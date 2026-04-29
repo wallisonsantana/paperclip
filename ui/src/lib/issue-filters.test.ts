@@ -12,7 +12,7 @@ function makeIssue(overrides: Partial<Issue> = {}): Issue {
     projectWorkspaceId: null,
     goalId: null,
     parentId: null,
-    title: "Issue",
+    title: "Tarefa",
     description: null,
     status: "todo",
     priority: "medium",

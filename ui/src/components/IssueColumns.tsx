@@ -30,15 +30,15 @@ const issueColumnLabels: Record<InboxIssueColumn, string> = {
   workspace: "Workspace",
   parent: "Parent issue",
   labels: "Tags",
-  updated: "Last updated",
+  updated: "Última atualização",
 };
 
 const issueColumnDescriptions: Record<InboxIssueColumn, string> = {
   status: "Issue state chip on the left edge.",
   id: "Ticket identifier like PAP-1009.",
-  assignee: "Assigned agent or board user.",
+  assignee: "Agente atribuído ou usuário do painel.",
   project: "Linked project pill with its color.",
-  workspace: "Execution or project workspace used for the issue.",
+  workspace: "Espaço de execução ou de projeto usado para a tarefa.",
   parent: "Parent issue identifier and title.",
   labels: "Issue labels and tags.",
   updated: "Latest visible activity time.",
@@ -220,7 +220,7 @@ export function InboxIssueTrailingColumns({
   onFilterWorkspace?: (workspaceId: string) => void;
 }) {
   const activityText = timeAgo(issue.lastActivityAt ?? issue.lastExternalCommentAt ?? issue.updatedAt);
-  const userLabel = assigneeUserName ?? formatAssigneeUserLabel(issue.assigneeUserId, currentUserId) ?? "User";
+  const userLabel = assigneeUserName ?? formatAssigneeUserLabel(issue.assigneeUserId, currentUserId) ?? "Usuário";
 
   return (
     <span

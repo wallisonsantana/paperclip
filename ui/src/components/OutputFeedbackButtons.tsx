@@ -145,7 +145,7 @@ export function OutputFeedbackButtons({
           <Textarea
             value={downvoteReason}
             onChange={(event) => setDownvoteReason(event.target.value)}
-            placeholder="Add a short note"
+            placeholder="Adicionar uma nota curta"
             className="min-h-20 resize-y bg-background"
             disabled={disabled || isSaving}
           />
@@ -174,7 +174,7 @@ export function OutputFeedbackButtons({
                 });
               }}
             >
-              {isSaving ? "Saving..." : "Save note"}
+              {isSaving ? "Salvando..." : "Save note"}
             </Button>
           </div>
         </div>
@@ -238,7 +238,7 @@ export function OutputFeedbackButtons({
                 );
               }}
             >
-              {isSaving ? "Saving..." : "Don't allow"}
+              {isSaving ? "Salvando..." : "Don't allow"}
             </Button>
             <Button
               type="button"
@@ -258,7 +258,7 @@ export function OutputFeedbackButtons({
                 );
               }}
             >
-              {isSaving ? "Saving..." : "Always allow"}
+              {isSaving ? "Salvando..." : "Sempre permitir"}
             </Button>
           </DialogFooter>
         </DialogContent>

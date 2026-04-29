@@ -65,8 +65,8 @@ export function ApprovalDetail() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Approvals", href: "/approvals" },
-      { label: approval?.id?.slice(0, 8) ?? approvalId ?? "Approval" },
+      { label: "Aprovações", href: "/approvals" },
+      { label: approval?.id?.slice(0, 8) ?? approvalId ?? "Aprovação" },
     ]);
   }, [setBreadcrumbs, approval, approvalId]);
 
@@ -91,7 +91,7 @@ export function ApprovalDetail() {
       refresh();
       navigate(`/approvals/${approvalId}?resolved=approved`, { replace: true });
     },
-    onError: (err) => setError(err instanceof Error ? err.message : "Approve failed"),
+    onError: (err) => setError(err instanceof Error ? err.message : "Falha ao aprovar"),
   });
 
   const rejectMutation = useMutation({
@@ -138,7 +138,7 @@ export function ApprovalDetail() {
       refresh();
       navigate("/approvals");
     },
-    onError: (err) => setError(err instanceof Error ? err.message : "Delete failed"),
+    onError: (err) => setError(err instanceof Error ? err.message : "Falha ao excluir"),
   });
 
   if (isLoading) return <PageSkeleton variant="detail" />;
@@ -166,7 +166,7 @@ export function ApprovalDetail() {
             to: `/agents/${linkedAgentId}`,
           }
         : {
-            label: "Back to approvals",
+            label: "Voltar às aprovações",
             to: "/approvals",
           };
 
@@ -337,7 +337,7 @@ export function ApprovalDetail() {
                     />
                   </Link>
                 ) : (
-                  <Identity name="Board" size="sm" />
+                  <Identity name="Painel" size="sm" />
                 )}
                 <span className="text-xs text-muted-foreground">
                   {new Date(comment.createdAt).toLocaleString()}

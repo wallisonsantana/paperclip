@@ -93,7 +93,7 @@ export function quotaSourceDisplayName(source: string): string {
     "anthropic-oauth": "Anthropic OAuth",
     "claude-cli": "Claude CLI",
     "bedrock": "AWS Bedrock",
-    "codex-rpc": "Codex app server",
+    "codex-rpc": "Servidor do app Codex",
     "codex-wham": "ChatGPT WHAM",
   };
   return map[source] ?? source;
@@ -145,7 +145,7 @@ export function financeEventKindDisplayName(eventKind: FinanceEventKind): string
     provisioned_capacity_charge: "Provisioned capacity",
     training_charge: "Training",
     custom_model_import_charge: "Custom model import",
-    custom_model_storage_charge: "Custom model storage",
+    custom_model_storage_charge: "Armazenamento de modelos personalizado",
     manual_adjustment: "Manual adjustment",
   };
   return map[eventKind];

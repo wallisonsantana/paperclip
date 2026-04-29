@@ -14,14 +14,14 @@ const inviteRoleOptions = [
   {
     value: "viewer",
     label: "Viewer",
-    description: "Can view company work and follow along without operational permissions.",
+    description: "Pode ver o trabalho da empresa e acompanhar sem permissões operacionais.",
     gets: "No built-in grants.",
   },
   {
     value: "operator",
     label: "Operator",
     description: "Recommended for people who need to help run work without managing access.",
-    gets: "Can assign tasks.",
+    gets: "Pode atribuir tarefas.",
   },
   {
     value: "admin",
@@ -31,7 +31,7 @@ const inviteRoleOptions = [
   },
   {
     value: "owner",
-    label: "Owner",
+    label: "Proprietário",
     description: "Full company access, including membership and permission management.",
     gets: "Everything in Admin, plus managing members and permission grants.",
   },
@@ -81,9 +81,9 @@ export function CompanyInvites() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: selectedCompany?.name ?? "Company", href: "/dashboard" },
-      { label: "Settings", href: "/company/settings" },
-      { label: "Invites" },
+      { label: selectedCompany?.name ?? "Empresa", href: "/dashboard" },
+      { label: "Configurações", href: "/company/settings" },
+      { label: "Convites" },
     ]);
   }, [selectedCompany?.name, setBreadcrumbs]);
 
@@ -129,7 +129,7 @@ export function CompanyInvites() {
     onError: (error) => {
       pushToast({
         title: "Failed to create invite",
-        body: error instanceof Error ? error.message : "Unknown error",
+        body: error instanceof Error ? error.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -144,7 +144,7 @@ export function CompanyInvites() {
     onError: (error) => {
       pushToast({
         title: "Failed to revoke invite",
-        body: error instanceof Error ? error.message : "Unknown error",
+        body: error instanceof Error ? error.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -297,9 +297,9 @@ export function CompanyInvites() {
                 <thead>
                   <tr className="border-b border-border">
                     <th className="px-5 py-3 font-medium text-muted-foreground">State</th>
-                    <th className="px-5 py-3 font-medium text-muted-foreground">Role</th>
+                    <th className="px-5 py-3 font-medium text-muted-foreground">Função</th>
                     <th className="px-5 py-3 font-medium text-muted-foreground">Invited by</th>
-                    <th className="px-5 py-3 font-medium text-muted-foreground">Created</th>
+                    <th className="px-5 py-3 font-medium text-muted-foreground">Criado</th>
                     <th className="px-5 py-3 font-medium text-muted-foreground">Join request</th>
                     <th className="px-5 py-3 text-right font-medium text-muted-foreground">Action</th>
                   </tr>
@@ -314,7 +314,7 @@ export function CompanyInvites() {
                       </td>
                       <td className="px-5 py-3 align-top">{invite.humanRole ?? "—"}</td>
                       <td className="px-5 py-3 align-top">
-                        <div>{invite.invitedByUser?.name || invite.invitedByUser?.email || "Unknown inviter"}</div>
+                        <div>{invite.invitedByUser?.name || invite.invitedByUser?.email || "Convidador desconhecido"}</div>
                         {invite.invitedByUser?.email && invite.invitedByUser.name ? (
                           <div className="text-xs text-muted-foreground">{invite.invitedByUser.email}</div>
                         ) : null}
@@ -342,7 +342,7 @@ export function CompanyInvites() {
                             Revoke
                           </Button>
                         ) : (
-                          <span className="text-xs text-muted-foreground">Inactive</span>
+                          <span className="text-xs text-muted-foreground">Inativo</span>
                         )}
                       </td>
                     </tr>
@@ -358,7 +358,7 @@ export function CompanyInvites() {
                   onClick={() => invitesQuery.fetchNextPage()}
                   disabled={invitesQuery.isFetchingNextPage}
                 >
-                  {invitesQuery.isFetchingNextPage ? "Loading more…" : "View more"}
+                  {invitesQuery.isFetchingNextPage ? "Carregando mais…" : "Ver mais"}
                 </Button>
               </div>
             ) : null}

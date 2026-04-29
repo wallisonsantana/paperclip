@@ -257,8 +257,8 @@ export function InlineEditor({
               : autosaveState === "saved"
                 ? "Saved"
                 : autosaveState === "error"
-                  ? "Could not save"
-                  : "Idle"}
+                  ? "Não foi possível salvar"
+                  : "Ocioso"}
           </span>
         </div>
       </div>

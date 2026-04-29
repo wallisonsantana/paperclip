@@ -101,7 +101,7 @@ function mapInviteAuthFeedback(
 
   return {
     tone: "error",
-    message: message ?? "Authentication failed",
+    message: message ?? "Falha de autenticação",
   };
 }
 
@@ -413,9 +413,9 @@ export function InviteLandingPage() {
 
   const joinButtonLabel = useMemo(() => {
     if (!invite) return "Continue";
-    if (invite.inviteType === "bootstrap_ceo") return "Accept invite";
+    if (invite.inviteType === "bootstrap_ceo") return "Aceitar convite";
     if (showsAgentForm) return "Submit request";
-    return sessionQuery.data ? "Accept invite" : "Continue";
+    return sessionQuery.data ? "Aceitar convite" : "Continuar";
   }, [invite, sessionQuery.data, showsAgentForm]);
 
   if (!token) {
@@ -568,7 +568,7 @@ export function InviteLandingPage() {
 
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="border border-zinc-800 p-3">
-                <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">Company</div>
+                <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">Empresa</div>
                 <div className="mt-1 text-sm text-zinc-100">{companyDisplayName}</div>
               </div>
               <div className="border border-zinc-800 p-3">
@@ -578,7 +578,7 @@ export function InviteLandingPage() {
               <div className="border border-zinc-800 p-3">
                 <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">Requested access</div>
                 <div className="mt-1 text-sm text-zinc-100">
-                  {showsAgentForm ? "Agent join request" : requestedHumanRole ?? "Company access"}
+                  {showsAgentForm ? "Pedido de acesso de agente" : requestedHumanRole ?? "Acesso à empresa"}
                 </div>
               </div>
               <div className="border border-zinc-800 p-3">
@@ -654,7 +654,7 @@ export function InviteLandingPage() {
               <div className="space-y-5">
                 <div>
                   <h2 className="text-lg font-semibold">
-                    {authMode === "sign_up" ? "Create your account" : "Sign in to continue"}
+                    {authMode === "sign_up" ? "Crie sua conta" : "Entre para continuar"}
                   </h2>
                   <p className="mt-1 text-sm text-zinc-400">
                     {authMode === "sign_up"
@@ -702,7 +702,7 @@ export function InviteLandingPage() {
                     event.preventDefault();
                     if (authMutation.isPending) return;
                     if (!authCanSubmit) {
-                      setAuthFeedback({ tone: "error", message: "Please fill in all required fields." });
+                      setAuthFeedback({ tone: "error", message: "Preencha todos os campos obrigatórios." });
                       return;
                     }
                     authMutation.mutate();
@@ -711,7 +711,7 @@ export function InviteLandingPage() {
                 >
                   {authMode === "sign_up" ? (
                     <label className="block text-sm">
-                      <span className="mb-1 block text-zinc-400">Name</span>
+                      <span className="mb-1 block text-zinc-400">Nome</span>
                       <input
                         name="name"
                         className={fieldClassName}
@@ -741,7 +741,7 @@ export function InviteLandingPage() {
                     />
                   </label>
                   <label className="block text-sm">
-                    <span className="mb-1 block text-zinc-400">Password</span>
+                    <span className="mb-1 block text-zinc-400">Senha</span>
                     <input
                       name="password"
                       type="password"
@@ -772,8 +772,8 @@ export function InviteLandingPage() {
                     {authMutation.isPending
                       ? "Working..."
                       : authMode === "sign_in"
-                        ? "Sign in and continue"
-                        : "Create account and continue"}
+                        ? "Entrar e continuar"
+                        : "Criar conta e continuar"}
                   </Button>
                 </form>
 
@@ -788,10 +788,10 @@ export function InviteLandingPage() {
                 <div>
                   <h2 className="text-lg font-semibold">
                     {shouldAutoAcceptHumanInvite
-                      ? "Submitting join request"
+                      ? "Enviando pedido de acesso"
                       : invite.inviteType === "bootstrap_ceo"
-                        ? "Accept bootstrap invite"
-                        : "Accept company invite"}
+                        ? "Aceitar convite inicial"
+                        : "Aceitar convite da empresa"}
                   </h2>
                   <p className="mt-1 text-sm text-zinc-400">
                     {shouldAutoAcceptHumanInvite

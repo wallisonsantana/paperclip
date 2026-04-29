@@ -19,7 +19,7 @@ describe("recent selection ordering", () => {
   it("keeps the selected option first, then three recent options, then default order", () => {
     const ordered = orderItemsBySelectedAndRecent(
       [
-        { id: "", label: "No project" },
+        { id: "", label: "Sem projeto" },
         { id: "alpha", label: "Alpha" },
         { id: "bravo", label: "Bravo" },
         { id: "charlie", label: "Charlie" },
@@ -36,7 +36,7 @@ describe("recent selection ordering", () => {
   it("keeps the no-value option first when it is selected", () => {
     const ordered = orderItemsBySelectedAndRecent(
       [
-        { id: "", label: "No assignee" },
+        { id: "", label: "Sem responsável" },
         { id: "agent-1", label: "Agent 1" },
         { id: "agent-2", label: "Agent 2" },
       ],

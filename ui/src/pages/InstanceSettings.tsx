@@ -33,7 +33,7 @@ export function InstanceSettings() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Instance Settings" },
+      { label: "Configurações da Instância" },
       { label: "Heartbeats" },
     ]);
   }, [setBreadcrumbs]);
@@ -103,7 +103,7 @@ export function InstanceSettings() {
       const failures = results.filter((result): result is PromiseRejectedResult => result.status === "rejected");
       if (failures.length > 0) {
         const firstError = failures[0]?.reason;
-        const detail = firstError instanceof Error ? firstError.message : "Unknown error";
+        const detail = firstError instanceof Error ? firstError.message : "Erro desconhecido";
         throw new Error(
           failures.length === 1
             ? `Failed to disable 1 timer heartbeat: ${detail}`
@@ -255,7 +255,7 @@ export function InstanceSettings() {
                           <Link
                             to={buildAgentHref(agent)}
                             className="text-muted-foreground hover:text-foreground"
-                            title="Full agent config"
+                            title="Configuração completa do agente"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
                           </Link>

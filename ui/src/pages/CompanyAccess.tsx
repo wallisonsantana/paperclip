@@ -31,10 +31,10 @@ const permissionLabels: Record<PermissionKey, string> = {
   "agents:create": "Create agents",
   "users:invite": "Invite humans and agents",
   "users:manage_permissions": "Manage members and grants",
-  "tasks:assign": "Assign tasks",
-  "tasks:assign_scope": "Assign scoped tasks",
+  "tasks:assign": "Atribuir tarefas",
+  "tasks:assign_scope": "Atribuir tarefas com escopo",
   "tasks:manage_active_checkouts": "Manage active task checkouts",
-  "joins:approve": "Approve join requests",
+  "joins:approve": "Aprovar pedidos de acesso",
 };
 
 function formatGrantSummary(member: CompanyMember) {
@@ -70,9 +70,9 @@ export function CompanyAccess() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: selectedCompany?.name ?? "Company", href: "/dashboard" },
-      { label: "Settings", href: "/company/settings" },
-      { label: "Access" },
+      { label: selectedCompany?.name ?? "Empresa", href: "/dashboard" },
+      { label: "Configurações", href: "/company/settings" },
+      { label: "Acesso" },
     ]);
   }, [selectedCompany?.name, setBreadcrumbs]);
 
@@ -120,7 +120,7 @@ export function CompanyAccess() {
     onError: (error) => {
       pushToast({
         title: "Failed to update member",
-        body: error instanceof Error ? error.message : "Unknown error",
+        body: error instanceof Error ? error.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -137,8 +137,8 @@ export function CompanyAccess() {
     },
     onError: (error) => {
       pushToast({
-        title: "Failed to approve join request",
-        body: error instanceof Error ? error.message : "Unknown error",
+        title: "Falha ao aprovar pedido de acesso",
+        body: error instanceof Error ? error.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -155,8 +155,8 @@ export function CompanyAccess() {
     },
     onError: (error) => {
       pushToast({
-        title: "Failed to reject join request",
-        body: error instanceof Error ? error.message : "Unknown error",
+        title: "Falha ao rejeitar pedido de acesso",
+        body: error instanceof Error ? error.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -201,7 +201,7 @@ export function CompanyAccess() {
         await queryClient.invalidateQueries({ queryKey: queryKeys.issues.listTouchedByMe(selectedCompanyId) });
       }
       pushToast({
-        title: "Member removed",
+        title: "Membro removido",
         body:
           result.reassignedIssueCount > 0
             ? `${result.reassignedIssueCount} assigned issue${result.reassignedIssueCount === 1 ? "" : "s"} cleaned up.`
@@ -212,7 +212,7 @@ export function CompanyAccess() {
     onError: (error) => {
       pushToast({
         title: "Failed to remove member",
-        body: error instanceof Error ? error.message : "Unknown error",
+        body: error instanceof Error ? error.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -313,21 +313,21 @@ export function CompanyAccess() {
                     request.requesterUser?.name ||
                     request.requestEmailSnapshot ||
                     request.requestingUserId ||
-                    "Unknown human requester"
+                    "Solicitante humano desconhecido"
                   }
                   subtitle={
                     request.requesterUser?.email ||
                     request.requestEmailSnapshot ||
                     request.requestingUserId ||
-                    "No email available"
+                    "Email indisponível"
                   }
                   context={
                     request.invite
                       ? `${request.invite.allowedJoinTypes} join invite${request.invite.humanRole ? ` • default role ${request.invite.humanRole}` : ""}`
-                      : "Invite metadata unavailable"
+                      : "Metadados do convite indisponíveis"
                   }
                   detail={`Submitted ${new Date(request.createdAt).toLocaleString()}`}
-                  approveLabel="Approve human"
+                  approveLabel="Aprovar humano"
                   rejectLabel="Reject human"
                   disabled={joinRequestActionPending}
                   onApprove={() => approveJoinRequestMutation.mutate(request.id)}
@@ -341,7 +341,7 @@ export function CompanyAccess() {
         <div className="overflow-hidden rounded-xl border border-border">
           <div className="grid grid-cols-[minmax(0,1.5fr)_120px_120px_minmax(0,1.2fr)_180px] gap-3 border-b border-border px-4 py-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
             <div>User account</div>
-            <div>Role</div>
+            <div>Função</div>
             <div>Status</div>
             <div>Grants</div>
             <div className="text-right">Action</div>
@@ -436,8 +436,8 @@ export function CompanyAccess() {
                       setDraftStatus(event.target.value as EditableMemberStatus)
                     }
                   >
-                    <option value="active">Active</option>
-                    <option value="pending">Pending</option>
+                    <option value="active">Ativo</option>
+                    <option value="pending">Pendente</option>
                     <option value="suspended">Suspended</option>
                   </select>
                 </label>
@@ -520,7 +520,7 @@ export function CompanyAccess() {
               }}
               disabled={updateMemberMutation.isPending}
             >
-              {updateMemberMutation.isPending ? "Saving…" : "Save access"}
+              {updateMemberMutation.isPending ? "Salvando…" : "Save access"}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -565,7 +565,7 @@ export function CompanyAccess() {
                       </optgroup>
                     ) : null}
                     {activeReassignmentAgents.length > 0 ? (
-                      <optgroup label="Agents">
+                      <optgroup label="Agentes">
                         {activeReassignmentAgents.map((agent) => (
                           <option key={agent.id} value={`agent:${agent.id}`}>
                             {agent.name} ({agent.role})
@@ -606,7 +606,7 @@ export function CompanyAccess() {
               }}
               disabled={archiveMemberMutation.isPending || assignedIssuesQuery.isLoading}
             >
-              {archiveMemberMutation.isPending ? "Removing..." : "Remove member"}
+              {archiveMemberMutation.isPending ? "Removendo..." : "Remover membro"}
             </Button>
           </DialogFooter>
         </DialogContent>

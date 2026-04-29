@@ -241,7 +241,7 @@ function CommandActionButtons({
           : action === "start"
             ? "Start"
             : action === "stop"
-              ? "Stop"
+              ? "Parar"
               : "Restart";
         const showSpinner = isPending && requestMatchesPending(pendingRequest, request);
         const disabled =
@@ -406,7 +406,7 @@ export function WorkspaceRuntimeControls({
             <span className="text-xs text-muted-foreground">
               {resolvedSections.jobs.length > 0
                 ? `${resolvedSections.jobs.length} job${resolvedSections.jobs.length === 1 ? "" : "s"} available to run on demand.`
-                : "Each command can be controlled independently."}
+                : "Cada comando pode ser controlado independentemente."}
             </span>
           </div>
           {visibleDisabledHint ? <p className="text-xs text-muted-foreground">{visibleDisabledHint}</p> : null}

@@ -125,14 +125,14 @@ describe("issueDetailBreadcrumb", () => {
     const state = createIssueDetailLocationState("Inbox", "/inbox/mine", "inbox");
 
     expect(readIssueDetailBreadcrumb("PAP-465", state, "?from=issues")).toEqual({
-      label: "Inbox",
+      label: "Caixa de Entrada",
       href: "/inbox/mine",
     });
   });
 
   it("falls back to the source query param when route state is unavailable", () => {
     expect(readIssueDetailBreadcrumb("PAP-465", null, "?from=inbox")).toEqual({
-      label: "Inbox",
+      label: "Caixa de Entrada",
       href: "/inbox",
     });
   });
@@ -146,7 +146,7 @@ describe("issueDetailBreadcrumb", () => {
     expect(
       readIssueDetailBreadcrumb("PAP-465", null, "?from=inbox&fromHref=%2FPAP%2Finbox%2Funread"),
     ).toEqual({
-      label: "Inbox",
+      label: "Caixa de Entrada",
       href: "/PAP/inbox/unread",
     });
   });
@@ -159,7 +159,7 @@ describe("issueDetailBreadcrumb", () => {
     expect(
       readIssueDetailLocationState("PAP-465", null),
     ).toEqual({
-      issueDetailBreadcrumb: { label: "Inbox", href: "/inbox/mine" },
+      issueDetailBreadcrumb: { label: "Caixa de Entrada", href: "/inbox/mine" },
       issueDetailSource: "inbox",
       issueDetailInboxQuickArchiveArmed: false,
     });

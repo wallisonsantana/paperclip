@@ -39,7 +39,7 @@ const instructions: Record<Platform, { steps: string[]; tip?: string }> = {
     steps: [
       "Open a terminal and navigate to the directory with cd.",
       "Run pwd to print the full path.",
-      "Copy the output and paste here.",
+      "Copie a saída e cole aqui.",
     ],
     tip: "In most file managers, Ctrl+L reveals the full path in the address bar.",
   },

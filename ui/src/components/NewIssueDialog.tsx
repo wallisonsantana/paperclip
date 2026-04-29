@@ -98,27 +98,27 @@ const STAGED_FILE_ACCEPT = "image/*,application/pdf,text/plain,text/markdown,app
 
 const ISSUE_THINKING_EFFORT_OPTIONS = {
   claude_local: [
-    { value: "", label: "Default" },
-    { value: "low", label: "Low" },
-    { value: "medium", label: "Medium" },
-    { value: "high", label: "High" },
+    { value: "", label: "Padrão" },
+    { value: "low", label: "Baixa" },
+    { value: "medium", label: "Média" },
+    { value: "high", label: "Alta" },
   ],
   codex_local: [
-    { value: "", label: "Default" },
+    { value: "", label: "Padrão" },
     { value: "minimal", label: "Minimal" },
-    { value: "low", label: "Low" },
-    { value: "medium", label: "Medium" },
-    { value: "high", label: "High" },
+    { value: "low", label: "Baixa" },
+    { value: "medium", label: "Média" },
+    { value: "high", label: "Alta" },
     { value: "xhigh", label: "X-High" },
   ],
   opencode_local: [
-    { value: "", label: "Default" },
+    { value: "", label: "Padrão" },
     { value: "minimal", label: "Minimal" },
-    { value: "low", label: "Low" },
-    { value: "medium", label: "Medium" },
-    { value: "high", label: "High" },
+    { value: "low", label: "Baixa" },
+    { value: "medium", label: "Média" },
+    { value: "high", label: "Alta" },
     { value: "xhigh", label: "X-High" },
-    { value: "max", label: "Max" },
+    { value: "max", label: "Máx." },
   ],
 } as const;
 
@@ -229,18 +229,18 @@ function formatFileSize(file: File) {
 }
 
 const statuses = [
-  { value: "backlog", label: "Backlog", color: issueStatusText.backlog ?? issueStatusTextDefault },
-  { value: "todo", label: "Todo", color: issueStatusText.todo ?? issueStatusTextDefault },
-  { value: "in_progress", label: "In Progress", color: issueStatusText.in_progress ?? issueStatusTextDefault },
-  { value: "in_review", label: "In Review", color: issueStatusText.in_review ?? issueStatusTextDefault },
-  { value: "done", label: "Done", color: issueStatusText.done ?? issueStatusTextDefault },
+  { value: "backlog", label: "Pendente", color: issueStatusText.backlog ?? issueStatusTextDefault },
+  { value: "todo", label: "A Fazer", color: issueStatusText.todo ?? issueStatusTextDefault },
+  { value: "in_progress", label: "Em Andamento", color: issueStatusText.in_progress ?? issueStatusTextDefault },
+  { value: "in_review", label: "Em Revisão", color: issueStatusText.in_review ?? issueStatusTextDefault },
+  { value: "done", label: "Concluído", color: issueStatusText.done ?? issueStatusTextDefault },
 ];
 
 const priorities = [
   { value: "critical", label: "Critical", icon: AlertTriangle, color: priorityColor.critical ?? priorityColorDefault },
-  { value: "high", label: "High", icon: ArrowUp, color: priorityColor.high ?? priorityColorDefault },
-  { value: "medium", label: "Medium", icon: Minus, color: priorityColor.medium ?? priorityColorDefault },
-  { value: "low", label: "Low", icon: ArrowDown, color: priorityColor.low ?? priorityColorDefault },
+  { value: "high", label: "Alta", icon: ArrowUp, color: priorityColor.high ?? priorityColorDefault },
+  { value: "medium", label: "Média", icon: Minus, color: priorityColor.medium ?? priorityColorDefault },
+  { value: "low", label: "Baixa", icon: ArrowDown, color: priorityColor.low ?? priorityColorDefault },
 ];
 
 const EXECUTION_WORKSPACE_MODES = [
@@ -842,12 +842,12 @@ export function NewIssueDialog() {
     && !isUsingParentExecutionWorkspace;
   const assigneeOptionsTitle =
     assigneeAdapterType === "claude_local"
-      ? "Claude options"
+      ? "Opções do Claude"
       : assigneeAdapterType === "codex_local"
         ? "Codex options"
         : assigneeAdapterType === "opencode_local"
           ? "OpenCode options"
-        : "Agent options";
+        : "Opções do agente";
   const thinkingEffortOptions =
     assigneeAdapterType === "codex_local"
       ? ISSUE_THINKING_EFFORT_OPTIONS.codex_local
@@ -1029,7 +1029,7 @@ export function NewIssueDialog() {
               </PopoverContent>
             </Popover>
             <span className="text-muted-foreground/60">&rsaquo;</span>
-            <span>{isSubIssueMode ? "New sub-issue" : "New issue"}</span>
+            <span>{isSubIssueMode ? "New sub-issue" : "Nova tarefa"}</span>
           </div>
           <div className="flex items-center gap-1">
             <Button
@@ -1058,7 +1058,7 @@ export function NewIssueDialog() {
           <div className="px-4 pt-4 pb-2">
             <textarea
             className="w-full text-lg font-semibold bg-transparent outline-none resize-none overflow-hidden placeholder:text-muted-foreground/50"
-            placeholder="Issue title"
+            placeholder="Título da tarefa"
             rows={1}
             value={title}
             onChange={(e) => {
@@ -1104,11 +1104,11 @@ export function NewIssueDialog() {
                 value={assigneeValue}
                 options={assigneeOptions}
                 recentOptionIds={recentAssigneeOptionIds}
-                placeholder="Assignee"
+                placeholder="Responsável"
                 disablePortal
                 noneLabel="No assignee"
                 searchPlaceholder="Search assignees..."
-                emptyMessage="No assignees found."
+                emptyMessage="Nenhum responsável encontrado."
                 onChange={(value) => {
                   const nextAssignee = parseAssigneeValue(value);
                   if (nextAssignee.assigneeAgentId) {
@@ -1134,7 +1134,7 @@ export function NewIssueDialog() {
                       <span className="truncate">{option.label}</span>
                     )
                   ) : (
-                    <span className="text-muted-foreground">Assignee</span>
+                    <span className="text-muted-foreground">Responsável</span>
                   )
                 }
                 renderOption={(option) => {
@@ -1156,11 +1156,11 @@ export function NewIssueDialog() {
                 value={projectId}
                 options={projectOptions}
                 recentOptionIds={recentProjectIds}
-                placeholder="Project"
+                placeholder="Projeto"
                 disablePortal
                 noneLabel="No project"
                 searchPlaceholder="Search projects..."
-                emptyMessage="No projects found."
+                emptyMessage="Nenhum projeto encontrado."
                 onChange={handleProjectChange}
                 onConfirm={() => {
                   descriptionEditorRef.current?.focus();
@@ -1175,7 +1175,7 @@ export function NewIssueDialog() {
                       <span className="truncate">{option.label}</span>
                     </>
                   ) : (
-                    <span className="text-muted-foreground">Project</span>
+                    <span className="text-muted-foreground">Projeto</span>
                   )
                 }
                 renderOption={(option) => {
@@ -1199,7 +1199,7 @@ export function NewIssueDialog() {
                   <button
                     type="button"
                     className="inline-flex items-center justify-center rounded-md p-1 text-muted-foreground hover:bg-accent/50 transition-colors"
-                    title="Add reviewer or approver"
+                    title="Adicionar revisor ou aprovador"
                   >
                     <MoreHorizontal className="h-4 w-4" />
                   </button>
@@ -1413,11 +1413,11 @@ export function NewIssueDialog() {
                   <InlineEntitySelector
                     value={assigneeModelOverride}
                     options={modelOverrideOptions}
-                    placeholder="Default model"
+                    placeholder="Modelo padrão"
                     disablePortal
-                    noneLabel="Default model"
+                    noneLabel="Modelo padrão"
                     searchPlaceholder="Search models..."
-                    emptyMessage="No models found."
+                    emptyMessage="Nenhum modelo encontrado."
                     onChange={setAssigneeModelOverride}
                   />
                 </div>
@@ -1508,7 +1508,7 @@ export function NewIssueDialog() {
                           className="shrink-0 text-muted-foreground"
                           onClick={() => removeStagedFile(file.id)}
                           disabled={createIssue.isPending}
-                          title="Remove document"
+                          title="Remover documento"
                         >
                           <X className="h-3.5 w-3.5" />
                         </Button>
@@ -1539,7 +1539,7 @@ export function NewIssueDialog() {
                           className="shrink-0 text-muted-foreground"
                           onClick={() => removeStagedFile(file.id)}
                           disabled={createIssue.isPending}
-                          title="Remove attachment"
+                          title="Remover anexo"
                         >
                           <X className="h-3.5 w-3.5" />
                         </Button>
@@ -1688,7 +1688,7 @@ export function NewIssueDialog() {
             >
               <span className="inline-flex items-center justify-center gap-1.5">
                 {createIssue.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}
-                <span>{createIssue.isPending ? "Creating..." : isSubIssueMode ? "Create Sub-Issue" : "Create Issue"}</span>
+                <span>{createIssue.isPending ? "Creating..." : isSubIssueMode ? "Create Sub-Issue" : "Criar Tarefa"}</span>
               </span>
             </Button>
           </div>

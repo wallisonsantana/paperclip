@@ -54,7 +54,7 @@ export function BoardClaimPage() {
         <div className="rounded-lg border border-border bg-card p-6">
           <h1 className="text-lg font-semibold">Claim challenge unavailable</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            {statusQuery.error instanceof Error ? statusQuery.error.message : "Challenge is invalid or expired."}
+            {statusQuery.error instanceof Error ? statusQuery.error.message : "Desafio inválido ou expirado."}
           </p>
         </div>
       </div>
@@ -117,7 +117,7 @@ export function BoardClaimPage() {
           onClick={() => claimMutation.mutate()}
           disabled={claimMutation.isPending}
         >
-          {claimMutation.isPending ? "Claiming…" : "Claim ownership"}
+          {claimMutation.isPending ? "Reivindicando…" : "Reivindicar propriedade"}
         </Button>
       </div>
     </div>

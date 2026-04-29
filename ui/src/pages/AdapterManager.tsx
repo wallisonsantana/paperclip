@@ -48,7 +48,7 @@ function AdapterRow({
   toggleTitleEnabled,
   /** Custom tooltip for the power button when adapter is disabled. */
   toggleTitleDisabled,
-  /** Custom label for the disabled badge (defaults to "Hidden from menus"). */
+  /** Custom label for the disabled badge (defaults to "Oculto dos menus"). */
   disabledBadgeLabel,
 }: {
   adapter: AdapterInfo;
@@ -97,7 +97,7 @@ function AdapterRow({
             )}
             {adapter.disabled && (
               <Badge variant="secondary" className="text-amber-600 border-amber-400">
-                {disabledBadgeLabel ?? "Hidden from menus"}
+                {disabledBadgeLabel ?? "Oculto dos menus"}
               </Badge>
             )}
           </div>
@@ -139,8 +139,8 @@ function AdapterRow({
             size="icon-sm"
             className="h-8 w-8"
             title={adapter.disabled
-              ? (toggleTitleEnabled ?? "Show in agent menus")
-              : (toggleTitleDisabled ?? "Hide from agent menus")}
+              ? (toggleTitleEnabled ?? "Mostrar nos menus de agente")
+              : (toggleTitleDisabled ?? "Ocultar dos menus de agente")}
             disabled={isToggling}
             onClick={() => onToggle(adapter.type, !adapter.disabled)}
           >
@@ -266,9 +266,9 @@ export function AdapterManager() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: selectedCompany?.name ?? "Company", href: "/dashboard" },
-      { label: "Settings", href: "/instance/settings/general" },
-      { label: "Adapters" },
+      { label: selectedCompany?.name ?? "Empresa", href: "/dashboard" },
+      { label: "Configurações", href: "/instance/settings/general" },
+      { label: "Adaptadores" },
     ]);
   }, [selectedCompany?.name, setBreadcrumbs]);
 
@@ -291,7 +291,7 @@ export function AdapterManager() {
       setInstallVersion("");
       setIsLocalPath(false);
       pushToast({
-        title: "Adapter installed",
+        title: "Adaptador instalado",
         body: `Type "${result.type}" registered successfully.${result.version ? ` (v${result.version})` : ""}`,
         tone: "success",
       });
@@ -305,7 +305,7 @@ export function AdapterManager() {
     mutationFn: (type: string) => adaptersApi.remove(type),
     onSuccess: () => {
       invalidate();
-      pushToast({ title: "Adapter removed", tone: "success" });
+      pushToast({ title: "Adaptador removido", tone: "success" });
     },
     onError: (err: Error) => {
       pushToast({ title: "Removal failed", body: err.message, tone: "error" });
@@ -330,7 +330,7 @@ export function AdapterManager() {
       invalidate();
     },
     onError: (err: Error) => {
-      pushToast({ title: "Override toggle failed", body: err.message, tone: "error" });
+      pushToast({ title: "Falha ao alternar substituição", body: err.message, tone: "error" });
     },
   });
 
@@ -341,7 +341,7 @@ export function AdapterManager() {
       invalidateDynamicParser(result.type);
       invalidateConfigSchemaCache(result.type);
       pushToast({
-        title: "Adapter reloaded",
+        title: "Adaptador recarregado",
         body: `Type "${result.type}" reloaded.${result.version ? ` (v${result.version})` : ""}`,
         tone: "success",
       });
@@ -358,7 +358,7 @@ export function AdapterManager() {
       invalidateDynamicParser(result.type);
       invalidateConfigSchemaCache(result.type);
       pushToast({
-        title: "Adapter reinstalled",
+        title: "Adaptador reinstalado",
         body: `Type "${result.type}" updated from npm.${result.version ? ` (v${result.version})` : ""}`,
         tone: "success",
       });
@@ -398,7 +398,7 @@ export function AdapterManager() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Cpu className="h-6 w-6 text-muted-foreground" />
-          <h1 className="text-xl font-semibold">Adapters</h1>
+          <h1 className="text-xl font-semibold">Adaptadores</h1>
           <Badge variant="outline" className="text-amber-600 border-amber-400">
             Alpha
           </Badge>
@@ -492,7 +492,7 @@ export function AdapterManager() {
               )}
             </div>
             <DialogFooter>
-              <Button variant="outline" onClick={() => setInstallDialogOpen(false)}>Cancel</Button>
+              <Button variant="outline" onClick={() => setInstallDialogOpen(false)}>Cancelar</Button>
               <Button
                 onClick={() =>
                   installMutation.mutate({
@@ -569,8 +569,8 @@ export function AdapterManager() {
                   isToggling={isBuiltinOverride ? overrideMutation.isPending : toggleMutation.isPending}
                   isReloading={reloadMutation.isPending}
                   isReinstalling={reinstallMutation.isPending}
-                  toggleTitleDisabled={isBuiltinOverride ? "Pause external override" : undefined}
-                  toggleTitleEnabled={isBuiltinOverride ? "Resume external override" : undefined}
+                  toggleTitleDisabled={isBuiltinOverride ? "Pausar substituição externa" : undefined}
+                  toggleTitleEnabled={isBuiltinOverride ? "Retomar substituição externa" : undefined}
                   disabledBadgeLabel={isBuiltinOverride ? "Override paused" : undefined}
                 />
               );
@@ -646,7 +646,7 @@ export function AdapterManager() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setRemoveType(null)}>Cancel</Button>
+            <Button variant="outline" onClick={() => setRemoveType(null)}>Cancelar</Button>
             <Button
               variant="destructive"
               disabled={removeMutation.isPending}
@@ -658,7 +658,7 @@ export function AdapterManager() {
                 }
               }}
             >
-              {removeMutation.isPending ? "Removing..." : "Remove"}
+              {removeMutation.isPending ? "Removendo..." : "Remover"}
             </Button>
           </DialogFooter>
         </DialogContent>

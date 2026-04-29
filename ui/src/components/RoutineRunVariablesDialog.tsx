@@ -297,10 +297,10 @@ export function RoutineRunVariablesDialog({
                 value={selection.assigneeAgentId}
                 options={assigneeOptions}
                 recentOptionIds={recentAssigneeIds}
-                placeholder="Agent"
+                placeholder="Agente"
                 noneLabel="Select an agent"
                 searchPlaceholder="Search agents..."
-                emptyMessage="No agents found."
+                emptyMessage="Nenhum agente encontrado."
                 disablePortal
                 openOnFocus={false}
                 onChange={(assigneeAgentId) => {
@@ -334,15 +334,15 @@ export function RoutineRunVariablesDialog({
               />
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs">Project</Label>
+              <Label className="text-xs">Projeto</Label>
               <InlineEntitySelector
                 value={selection.projectId}
                 options={projectOptions}
                 recentOptionIds={recentProjectIds}
-                placeholder="Project"
+                placeholder="Projeto"
                 noneLabel="No project"
                 searchPlaceholder="Search projects..."
-                emptyMessage="No projects found."
+                emptyMessage="Nenhum projeto encontrado."
                 disablePortal
                 openOnFocus={false}
                 onChange={(projectId) => {
@@ -427,7 +427,7 @@ export function RoutineRunVariablesDialog({
                   }))}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Choose a value" />
+                    <SelectValue placeholder="Escolha um valor" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="__unset__">No value</SelectItem>

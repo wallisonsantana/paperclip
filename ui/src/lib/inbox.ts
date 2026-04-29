@@ -800,7 +800,7 @@ const inboxWorkItemKindLabels: Record<InboxWorkItem["kind"], string> = {
   issue: "Issues",
   approval: "Approvals",
   failed_run: "Failed runs",
-  join_request: "Join requests",
+  join_request: "Pedidos de acesso",
 };
 
 export function groupInboxWorkItems(

@@ -128,7 +128,7 @@ export function NewGoalDialog() {
               </span>
             )}
             <span className="text-muted-foreground/60">&rsaquo;</span>
-            <span>{newGoalDefaults.parentId ? "New sub-goal" : "New goal"}</span>
+            <span>{newGoalDefaults.parentId ? "New sub-goal" : "Nova meta"}</span>
           </div>
           <div className="flex items-center gap-1">
             <Button

@@ -23,7 +23,7 @@ describe("getMentionAwareLinkNodeInit", () => {
       getURL: () => "agent://agent-123",
       getRel: () => "noreferrer",
       getTarget: () => "_blank",
-      getTitle: () => "Agent mention",
+      getTitle: () => "Menção ao agente",
     });
 
     expect(Object.keys(init)).toEqual(["url", "attributes"]);
@@ -32,7 +32,7 @@ describe("getMentionAwareLinkNodeInit", () => {
       attributes: {
         rel: "noreferrer",
         target: "_blank",
-        title: "Agent mention",
+        title: "Menção ao agente",
       },
     });
   });

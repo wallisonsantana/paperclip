@@ -124,7 +124,7 @@ function ColorPicker({
         onClick={() => setOpen(!open)}
         className="shrink-0 h-5 w-5 rounded-md cursor-pointer hover:ring-2 hover:ring-foreground/20 transition-[box-shadow]"
         style={{ backgroundColor: currentColor }}
-        aria-label="Change project color"
+        aria-label="Alterar cor do projeto"
       />
       {open && (
         <div className="absolute top-full left-0 mt-2 p-2 bg-popover border border-border rounded-lg shadow-lg z-50 w-max">
@@ -338,7 +338,7 @@ export function ProjectDetail() {
       ),
     onSuccess: (updatedProject, archived) => {
       invalidateProject();
-      const name = updatedProject?.name ?? project?.name ?? "Project";
+      const name = updatedProject?.name ?? project?.name ?? "Projeto";
       if (archived) {
         pushToast({ title: `"${name}" has been archived`, tone: "success" });
         navigate("/dashboard");
@@ -371,8 +371,8 @@ export function ProjectDetail() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Projects", href: "/projects" },
-      { label: project?.name ?? routeProjectRef ?? "Project" },
+      { label: "Projetos", href: "/projects" },
+      { label: project?.name ?? routeProjectRef ?? "Projeto" },
     ]);
   }, [setBreadcrumbs, project, routeProjectRef]);
 
@@ -468,7 +468,7 @@ export function ProjectDetail() {
       companyId: resolvedCompanyId ?? "",
       scopeType: "project",
       scopeId: project?.id ?? routeProjectRef,
-      scopeName: project?.name ?? "Project",
+      scopeName: project?.name ?? "Projeto",
       metric: "billed_cents",
       windowKind: "lifetime",
       amount: 0,
@@ -625,10 +625,10 @@ export function ProjectDetail() {
       <Tabs value={activeTab ?? "list"} onValueChange={(value) => handleTabChange(value as ProjectTab)}>
         <PageTabBar
           items={[
-            { value: "list", label: "Issues" },
-            { value: "overview", label: "Overview" },
-            ...(showWorkspacesTab ? [{ value: "workspaces", label: "Workspaces" }] : []),
-            { value: "configuration", label: "Configuration" },
+            { value: "list", label: "Tarefas" },
+            { value: "overview", label: "Visão Geral" },
+            ...(showWorkspacesTab ? [{ value: "workspaces", label: "Espaços de Trabalho" }] : []),
+            { value: "configuration", label: "Configuração" },
             { value: "budget", label: "Budget" },
             ...pluginTabItems.map((item) => ({
               value: item.value,

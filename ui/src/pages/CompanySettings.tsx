@@ -99,7 +99,7 @@ export function CompanySettings() {
     onError: (err) => {
       pushToast({
         title: "Failed to update feedback sharing",
-        body: err instanceof Error ? err.message : "Unknown error",
+        body: err instanceof Error ? err.message : "Erro desconhecido",
         tone: "error",
       });
     },
@@ -224,8 +224,8 @@ export function CompanySettings() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: selectedCompany?.name ?? "Company", href: "/dashboard" },
-      { label: "Settings" }
+      { label: selectedCompany?.name ?? "Empresa", href: "/dashboard" },
+      { label: "Configurações" }
     ]);
   }, [setBreadcrumbs, selectedCompany?.name]);
 
@@ -249,7 +249,7 @@ export function CompanySettings() {
     <div className="max-w-2xl space-y-6">
       <div className="flex items-center gap-2">
         <Settings className="h-5 w-5 text-muted-foreground" />
-        <h1 className="text-lg font-semibold">Company Settings</h1>
+        <h1 className="text-lg font-semibold">Configurações da Empresa</h1>
       </div>
 
       {/* General */}
@@ -258,7 +258,7 @@ export function CompanySettings() {
           General
         </div>
         <div className="space-y-3 rounded-md border border-border px-4 py-4">
-          <Field label="Company name" hint="The display name for your company.">
+          <Field label="Nome da empresa" hint="The display name for your company.">
             <input
               className="w-full rounded-md border border-border bg-transparent px-2.5 py-1.5 text-sm outline-none"
               type="text"
@@ -267,7 +267,7 @@ export function CompanySettings() {
             />
           </Field>
           <Field
-            label="Description"
+            label="Descrição"
             hint="Optional description shown in the company profile."
           >
             <input
@@ -316,7 +316,7 @@ export function CompanySettings() {
                         onClick={handleClearLogo}
                         disabled={clearLogoMutation.isPending}
                       >
-                        {clearLogoMutation.isPending ? "Removing..." : "Remove logo"}
+                        {clearLogoMutation.isPending ? "Removendo..." : "Remover logo"}
                       </Button>
                     </div>
                   )}
@@ -325,7 +325,7 @@ export function CompanySettings() {
                       {logoUploadError ??
                         (logoUploadMutation.error instanceof Error
                           ? logoUploadMutation.error.message
-                          : "Logo upload failed")}
+                          : "Falha ao enviar logo")}
                     </span>
                   )}
                   {clearLogoMutation.isError && (
@@ -339,7 +339,7 @@ export function CompanySettings() {
                 </div>
               </Field>
               <Field
-                label="Brand color"
+                label="Cor da marca"
                 hint="Sets the hue for the company icon. Leave empty for auto-generated color."
               >
                 <div className="flex items-center gap-2">
@@ -386,16 +386,16 @@ export function CompanySettings() {
             onClick={handleSaveGeneral}
             disabled={generalMutation.isPending || !companyName.trim()}
           >
-            {generalMutation.isPending ? "Saving..." : "Save changes"}
+            {generalMutation.isPending ? "Salvando..." : "Salvar alterações"}
           </Button>
           {generalMutation.isSuccess && (
-            <span className="text-xs text-muted-foreground">Saved</span>
+            <span className="text-xs text-muted-foreground">Salvo</span>
           )}
           {generalMutation.isError && (
             <span className="text-xs text-destructive">
               {generalMutation.error instanceof Error
                   ? generalMutation.error.message
-                  : "Failed to save"}
+                  : "Falha ao salvar"}
             </span>
           )}
         </div>
@@ -528,7 +528,7 @@ export function CompanySettings() {
                       }
                     }}
                   >
-                    {snippetCopied ? "Copied snippet" : "Copy snippet"}
+                    {snippetCopied ? "Trecho copiado" : "Copiar trecho"}
                   </Button>
                 </div>
               </div>
@@ -603,14 +603,14 @@ export function CompanySettings() {
               {archiveMutation.isPending
                 ? "Archiving..."
                 : selectedCompany.status === "archived"
-                ? "Already archived"
-                : "Archive company"}
+                ? "Já arquivado"
+                : "Arquivar empresa"}
             </Button>
             {archiveMutation.isError && (
               <span className="text-xs text-destructive">
                 {archiveMutation.error instanceof Error
                   ? archiveMutation.error.message
-                  : "Failed to archive company"}
+                  : "Falha ao arquivar empresa"}
               </span>
             )}
           </div>

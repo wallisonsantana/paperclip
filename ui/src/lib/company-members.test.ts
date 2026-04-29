@@ -47,7 +47,7 @@ describe("company-members helpers", () => {
       image: "https://example.com/taylor.png",
     });
     expect(profiles.get("local-board")).toEqual({
-      label: "Board",
+      label: "Painel",
       image: null,
     });
   });

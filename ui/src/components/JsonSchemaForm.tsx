@@ -160,7 +160,7 @@ export function validateField(
 
   // Required check
   if (isRequired && (value === undefined || value === null || value === "")) {
-    return "This field is required";
+    return "Este campo é obrigatório";
   }
 
   // Skip further validation if empty and not required
@@ -451,7 +451,7 @@ const EnumField = React.memo(({
       disabled={disabled}
     >
       <SelectTrigger className="w-full">
-        <SelectValue placeholder="Select an option" />
+        <SelectValue placeholder="Selecione uma opção" />
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
@@ -694,7 +694,7 @@ const ArrayField = React.memo(({
           }}
         >
           <Plus className="mr-2 h-4 w-4" />
-          {isComplex ? "Add item" : "Add"}
+          {isComplex ? "Adicionar item" : "Adicionar"}
         </Button>
       </div>
 

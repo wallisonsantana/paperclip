@@ -595,7 +595,7 @@ function formatTimelineAssigneeLabel(
     return agentMap?.get(assignee.agentId)?.name ?? assignee.agentId.slice(0, 8);
   }
   if (assignee.userId) {
-    return formatAssigneeUserLabel(assignee.userId, currentUserId, userLabelMap) ?? "Board";
+    return formatAssigneeUserLabel(assignee.userId, currentUserId, userLabelMap) ?? "Painel";
   }
   return "Unassigned";
 }
@@ -619,7 +619,7 @@ export function resolveIssueChatHumanAuthor(args: {
   const isCurrentUser = Boolean(authorUserId && currentUserId && authorUserId === currentUserId);
   const resolvedAuthorName = profile?.label?.trim()
     || authorName?.trim()
-    || (authorUserId === "local-board" ? "Board" : (isCurrentUser ? "You" : "User"));
+    || (authorUserId === "local-board" ? "Board" : (isCurrentUser ? "Você" : "Usuário"));
 
   return {
     isCurrentUser,
@@ -918,8 +918,8 @@ function CopyablePreBlock({ children, className }: { children: string; className
           "absolute right-1.5 top-1.5 inline-flex h-6 w-6 items-center justify-center rounded-md bg-background/80 text-muted-foreground opacity-0 backdrop-blur-sm transition-opacity hover:text-foreground group-hover/pre:opacity-100",
           copied && "opacity-100",
         )}
-        title="Copy"
-        aria-label="Copy"
+        title="Copiar"
+        aria-label="Copiar"
         onClick={() => {
           void navigator.clipboard.writeText(children).then(() => {
             setCopied(true);
@@ -1465,8 +1465,8 @@ function IssueChatAssistantMessage({ message }: { message: ThreadMessage }) {
                       variant="ghost"
                       size="icon-xs"
                       className="text-muted-foreground hover:text-foreground"
-                      title="More actions"
-                      aria-label="More actions"
+                      title="Mais ações"
+                      aria-label="Mais ações"
                     >
                       <MoreHorizontal className="h-3.5 w-3.5" />
                     </Button>
@@ -1489,7 +1489,7 @@ function IssueChatAssistantMessage({ message }: { message: ThreadMessage }) {
                         }}
                       >
                         <Square className="mr-2 h-3.5 w-3.5 fill-current" />
-                        {stoppingRunId === runId ? "Stopping…" : "Stop run"}
+                        {stoppingRunId === runId ? "Parando…" : "Parar execução"}
                       </DropdownMenuItem>
                     ) : null}
                     {runHref ? (
@@ -1630,7 +1630,7 @@ function IssueChatFeedbackButtons({
           <Textarea
             value={downvoteReason}
             onChange={(event) => setDownvoteReason(event.target.value)}
-            placeholder="Add a short note"
+            placeholder="Adicionar uma nota curta"
             className="min-h-20 resize-y bg-background text-sm"
             disabled={isSaving}
           />
@@ -1653,7 +1653,7 @@ function IssueChatFeedbackButtons({
               disabled={isSaving || !downvoteReason.trim()}
               onClick={handleSubmitReason}
             >
-              {isSaving ? "Saving..." : "Save note"}
+              {isSaving ? "Salvando..." : "Save note"}
             </Button>
           </div>
         </PopoverContent>
@@ -1709,7 +1709,7 @@ function IssueChatFeedbackButtons({
                 ).then(() => setPendingSharingDialog(null));
               }}
             >
-              {isSaving ? "Saving..." : "Don't allow"}
+              {isSaving ? "Salvando..." : "Don't allow"}
             </Button>
             <Button
               type="button"
@@ -1722,7 +1722,7 @@ function IssueChatFeedbackButtons({
                 }).then(() => setPendingSharingDialog(null));
               }}
             >
-              {isSaving ? "Saving..." : "Always allow"}
+              {isSaving ? "Salvando..." : "Sempre permitir"}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -2060,7 +2060,7 @@ const IssueChatComposer = forwardRef<IssueChatComposerHandle, IssueChatComposerP
         ref={editorRef}
         value={body}
         onChange={setBody}
-        placeholder="Reply"
+        placeholder="Responder"
         mentions={mentions}
         onSubmit={handleSubmit}
         imageUploadHandler={onImageUpload}
@@ -2083,7 +2083,7 @@ const IssueChatComposer = forwardRef<IssueChatComposerHandle, IssueChatComposerP
               size="icon-sm"
               onClick={() => attachInputRef.current?.click()}
               disabled={attaching}
-              title="Attach image"
+              title="Anexar imagem"
             >
               <Paperclip className="h-4 w-4" />
             </Button>
@@ -2094,14 +2094,14 @@ const IssueChatComposer = forwardRef<IssueChatComposerHandle, IssueChatComposerP
           <InlineEntitySelector
             value={reassignTarget}
             options={reassignOptions}
-            placeholder="Assignee"
+            placeholder="Responsável"
             noneLabel="No assignee"
             searchPlaceholder="Search assignees..."
-            emptyMessage="No assignees found."
+            emptyMessage="Nenhum responsável encontrado."
             onChange={setReassignTarget}
             className="h-8 text-xs"
             renderTriggerValue={(option) => {
-              if (!option) return <span className="text-muted-foreground">Assignee</span>;
+              if (!option) return <span className="text-muted-foreground">Responsável</span>;
               const agentId = option.id.startsWith("agent:") ? option.id.slice("agent:".length) : null;
               const agent = agentId ? agentMap?.get(agentId) : null;
               return (
@@ -2130,7 +2130,7 @@ const IssueChatComposer = forwardRef<IssueChatComposerHandle, IssueChatComposerP
         ) : null}
 
         <Button size="sm" disabled={!canSubmit} onClick={() => void handleSubmit()}>
-          {submitting ? "Posting..." : "Send"}
+          {submitting ? "Posting..." : "Enviar"}
         </Button>
       </div>
     </div>
