@@ -96,11 +96,11 @@ function CopyableInline({ value, label, mono }: { value: string; label?: string;
 
 function workspaceModeLabel(mode: string | null | undefined) {
   switch (mode) {
-    case "isolated_workspace": return "Isolated workspace";
-    case "operator_branch": return "Operator branch";
-    case "cloud_sandbox": return "Cloud sandbox";
+    case "isolated_workspace": return "Espaço isolado";
+    case "operator_branch": return "Branch do operador";
+    case "cloud_sandbox": return "Sandbox em nuvem";
     case "adapter_managed": return "Gerenciado pelo adaptador";
-    default: return "Workspace";
+    default: return "Espaço";
   }
 }
 

@@ -509,7 +509,7 @@ export function RoutineRunVariablesDialog({
             }}
             disabled={isPending || !canSubmit}
           >
-            {isPending ? "Running..." : "Run routine"}
+            {isPending ? "Executando..." : "Executar rotina"}
           </Button>
         </DialogFooter>
       </DialogContent>

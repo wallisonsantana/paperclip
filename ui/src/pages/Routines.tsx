@@ -266,7 +266,7 @@ function RoutineListRow({
               disabled={runningRoutineId === routine.id || isArchived}
               onClick={() => onRunNow(routine)}
             >
-              {runningRoutineId === routine.id ? "Running..." : "Executar agora"}
+              {runningRoutineId === routine.id ? "Executando..." : "Executar agora"}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem

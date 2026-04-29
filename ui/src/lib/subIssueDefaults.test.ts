@@ -42,7 +42,7 @@ function makeIssue(overrides: Partial<Issue> = {}): Issue {
     projectWorkspaceId: "project-workspace-1",
     goalId: "goal-1",
     parentId: null,
-    title: "Parent issue",
+    title: "Tarefa pai",
     description: null,
     status: "todo",
     priority: "medium",
@@ -85,7 +85,7 @@ describe("buildSubIssueDefaults", () => {
     expect(defaults).toEqual({
       parentId: "issue-1",
       parentIdentifier: "PAP-1",
-      parentTitle: "Parent issue",
+      parentTitle: "Tarefa pai",
       projectId: "project-1",
       projectWorkspaceId: "project-workspace-1",
       goalId: "goal-1",
@@ -106,7 +106,7 @@ describe("buildSubIssueDefaults", () => {
     expect(defaults).toEqual({
       parentId: "issue-1",
       parentIdentifier: "PAP-1",
-      parentTitle: "Parent issue",
+      parentTitle: "Tarefa pai",
       projectId: "project-1",
       projectWorkspaceId: "project-workspace-1",
       goalId: "goal-1",
@@ -126,7 +126,7 @@ describe("buildSubIssueDefaults", () => {
     expect(defaults).toEqual({
       parentId: "issue-1",
       parentIdentifier: "PAP-1",
-      parentTitle: "Parent issue",
+      parentTitle: "Tarefa pai",
       projectId: "project-1",
       projectWorkspaceId: "project-workspace-1",
       goalId: "goal-1",

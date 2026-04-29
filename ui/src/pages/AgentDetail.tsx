@@ -167,9 +167,9 @@ function formatEnvForDisplay(envValue: unknown, censorUsernameInLogs: boolean): 
 
 const sourceLabels: Record<string, string> = {
   timer: "Timer",
-  assignment: "Assignment",
-  on_demand: "On-demand",
-  automation: "Automation",
+  assignment: "Atribuição",
+  on_demand: "Sob demanda",
+  automation: "Automação",
 };
 
 const LIVE_SCROLL_BOTTOM_TOLERANCE_PX = 32;
@@ -408,13 +408,13 @@ function parseStoredLogContent(content: string): RunLogChunk[] {
 function workspaceOperationPhaseLabel(phase: WorkspaceOperation["phase"]) {
   switch (phase) {
     case "worktree_prepare":
-      return "Worktree setup";
+      return "Preparar worktree";
     case "workspace_provision":
-      return "Provision";
+      return "Provisionar espaço";
     case "workspace_teardown":
-      return "Teardown";
+      return "Desligar espaço";
     case "worktree_cleanup":
-      return "Worktree cleanup";
+      return "Limpar worktree";
     default:
       return phase;
   }
@@ -866,7 +866,7 @@ export function AgentDetail() {
         crumbs.push({ label: "Execuções", href: `/agents/${canonicalAgentRef}/runs` });
         crumbs.push({ label: `Run ${urlRunId.slice(0, 8)}` });
       } else if (activeView === "instructions") {
-        crumbs.push({ label: "Instructions" });
+        crumbs.push({ label: "Instruções" });
       } else if (activeView === "configuration") {
         crumbs.push({ label: "Configuração" });
       // } else if (activeView === "skills") { // TODO: bring back later
@@ -874,7 +874,7 @@ export function AgentDetail() {
       } else if (activeView === "runs") {
         crumbs.push({ label: "Execuções" });
       } else if (activeView === "budget") {
-        crumbs.push({ label: "Budget" });
+        crumbs.push({ label: "Orçamento" });
       } else {
         crumbs.push({ label: "Painel" });
       }
@@ -932,12 +932,12 @@ export function AgentDetail() {
             onClick={() => openNewIssue({ assigneeAgentId: agent.id })}
           >
             <Plus className="h-3.5 w-3.5 sm:mr-1" />
-            <span className="hidden sm:inline">Assign Task</span>
+            <span className="hidden sm:inline">Atribuir Tarefa</span>
           </Button>
           <RunButton
             onClick={() => agentAction.mutate("invoke")}
             disabled={agentAction.isPending || isPendingApproval}
-            label="Run Heartbeat"
+            label="Executar Heartbeat"
           />
           <PauseResumeButton
             isPaused={agent.status === "paused"}
@@ -1010,11 +1010,11 @@ export function AgentDetail() {
           <PageTabBar
             items={[
               { value: "dashboard", label: "Painel" },
-              { value: "instructions", label: "Instructions" },
+              { value: "instructions", label: "Instruções" },
               { value: "skills", label: "Habilidades" },
               { value: "configuration", label: "Configuração" },
               { value: "runs", label: "Execuções" },
-              { value: "budget", label: "Budget" },
+              { value: "budget", label: "Orçamento" },
             ]}
             value={activeView}
             onValueChange={(value) => navigate(`/agents/${canonicalAgentRef}/${value}`)}
@@ -1025,7 +1025,7 @@ export function AgentDetail() {
       {actionError && <p className="text-sm text-destructive">{actionError}</p>}
       {isPendingApproval && (
         <div className="flex flex-wrap items-center gap-3 rounded-md border border-amber-300/60 bg-amber-50 px-3 py-2 text-sm text-amber-900 dark:border-amber-400/40 dark:bg-amber-950/30 dark:text-amber-200">
-          <span>This agent is pending board approval and cannot be invoked yet.</span>
+          <span>Este agente aguarda aprovação do painel e ainda não pode ser invocado.</span>
           <Button
             variant="outline"
             size="sm"
@@ -1211,13 +1211,13 @@ function LatestRunCard({ runs, agentId }: { runs: HeartbeatRun[]; agentId: strin
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
             </span>
           )}
-          {isLive ? "Live Run" : "Latest Run"}
+          {isLive ? "Execução ao Vivo" : "Última Execução"}
         </h3>
         <Link
           to={`/agents/${agentId}/runs/${run.id}`}
           className="shrink-0 text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
         >
-          View details &rarr;
+          Ver detalhes &rarr;
         </Link>
       </div>
 
@@ -1273,7 +1273,7 @@ function AgentOverview({
 }) {
   return (
     <div className="space-y-8">
-      {/* Latest Run */}
+      {/* Última Execução */}
       <LatestRunCard runs={runs} agentId={agentRouteId} />
 
       {/* Charts */}
@@ -1578,7 +1578,7 @@ function ConfigurationTab({
           : err instanceof Error
             ? err.message
             : "Não foi possível salvar o agente";
-      pushToast({ title: "Save failed", body: message, tone: "error" });
+      pushToast({ title: "Falha ao salvar", body: message, tone: "error" });
     },
   });
 
@@ -2350,7 +2350,7 @@ function PromptsTab({
                   text={displayValue}
                   ariaLabel="Copiar arquivo de instruções como markdown"
                   title="Copiar como markdown"
-                  copiedLabel="Copied"
+                  copiedLabel="Copiado"
                   className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border text-muted-foreground hover:bg-accent hover:text-foreground"
                 >
                   <Copy className="h-3.5 w-3.5" />
@@ -2400,7 +2400,7 @@ function PromptsTab({
               value={displayValue}
               onChange={(event) => setDraft(event.target.value)}
               className="min-h-[420px] w-full min-w-0 rounded-md border border-border bg-transparent px-3 py-2 font-mono text-sm outline-none"
-              placeholder="File contents"
+              placeholder="Conteúdo do arquivo"
             />
           )}
         </div>
@@ -2636,13 +2636,13 @@ function AgentSkillsTab({
   const skillApplicationLabel = useMemo(() => {
     switch (skillSnapshot?.mode) {
       case "persistent":
-        return "Kept in the workspace";
+        return "Mantido no espaço de trabalho";
       case "ephemeral":
         return "Aplicado quando o agente executa";
       case "unsupported":
-        return "Tracked only";
+        return "Apenas rastreado";
       default:
-        return "Unknown";
+        return "Desconhecido";
     }
   }, [skillSnapshot?.mode]);
   const unsupportedSkillMessage = useMemo(() => {
@@ -2863,7 +2863,7 @@ function AgentSkillsTab({
 
             {syncSkills.isError && (
               <p className="mt-3 text-xs text-destructive">
-                {syncSkills.error instanceof Error ? syncSkills.error.message : "Failed to update skills"}
+                {syncSkills.error instanceof Error ? syncSkills.error.message : "Falha ao atualizar habilidades"}
               </p>
             )}
           </section>
@@ -3226,12 +3226,12 @@ function RunDetail({ run: initialRun, agentRouteId, adapterType, adapterConfig }
             })()}
             {resumeRun.isError && (
               <div className="text-xs text-destructive">
-                {resumeRun.error instanceof Error ? resumeRun.error.message : "Failed to resume run"}
+                {resumeRun.error instanceof Error ? resumeRun.error.message : "Falha ao retomar execução"}
               </div>
             )}
             {retryRun.isError && (
               <div className="text-xs text-destructive">
-                {retryRun.error instanceof Error ? retryRun.error.message : "Failed to retry run"}
+                {retryRun.error instanceof Error ? retryRun.error.message : "Falha ao tentar novamente"}
               </div>
             )}
             {startTime && (
@@ -3375,7 +3375,7 @@ function RunDetail({ run: initialRun, agentRouteId, adapterType, adapterConfig }
               <div className="px-4 pb-3 space-y-1 text-xs">
                 {run.sessionIdBefore && (
                   <div className="flex items-center gap-2">
-                    <span className="text-muted-foreground w-12">{sessionChanged ? "Before" : "ID"}</span>
+                    <span className="text-muted-foreground w-12">{sessionChanged ? "Antes" : "ID"}</span>
                     <CopyText text={run.sessionIdBefore} className="font-mono" />
                   </div>
                 )}
@@ -3662,7 +3662,7 @@ function LogViewer({ run, adapterType }: { run: HeartbeatRun; adapterType: strin
             setLogLoading(false);
             return;
           }
-          setLogError(err instanceof Error ? err.message : "Failed to load run log");
+          setLogError(err instanceof Error ? err.message : "Falha ao carregar log da execução");
         }
       } finally {
         if (!cancelled) setLogLoading(false);
@@ -4035,7 +4035,7 @@ function KeysTab({ agentId, companyId }: { agentId: string; companyId?: string }
   });
 
   const createKey = useMutation({
-    mutationFn: () => agentsApi.createKey(agentId, newKeyName.trim() || "Default", companyId),
+    mutationFn: () => agentsApi.createKey(agentId, newKeyName.trim() || "Padrão", companyId),
     onSuccess: (data) => {
       setNewToken(data.token);
       setTokenVisible(true);

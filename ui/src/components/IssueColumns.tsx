@@ -25,23 +25,23 @@ export const issueTrailingColumns: InboxIssueColumn[] = ["assignee", "project", 
 const issueColumnLabels: Record<InboxIssueColumn, string> = {
   status: "Status",
   id: "ID",
-  assignee: "Assignee",
-  project: "Project",
-  workspace: "Workspace",
-  parent: "Parent issue",
-  labels: "Tags",
+  assignee: "Responsável",
+  project: "Projeto",
+  workspace: "Espaço",
+  parent: "Tarefa pai",
+  labels: "Etiquetas",
   updated: "Última atualização",
 };
 
 const issueColumnDescriptions: Record<InboxIssueColumn, string> = {
-  status: "Issue state chip on the left edge.",
-  id: "Ticket identifier like PAP-1009.",
+  status: "Indicador de status da tarefa, na borda esquerda.",
+  id: "Identificador do ticket, como PAP-1009.",
   assignee: "Agente atribuído ou usuário do painel.",
-  project: "Linked project pill with its color.",
+  project: "Selo do projeto vinculado, com sua cor.",
   workspace: "Espaço de execução ou de projeto usado para a tarefa.",
-  parent: "Parent issue identifier and title.",
-  labels: "Issue labels and tags.",
-  updated: "Latest visible activity time.",
+  parent: "Identificador e título da tarefa pai.",
+  labels: "Etiquetas e tags da tarefa.",
+  updated: "Hora da última atividade visível.",
 };
 
 export function issueActivityText(issue: Issue): string {

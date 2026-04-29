@@ -994,7 +994,7 @@ export function CompanySkills() {
     onError: (error) => {
       pushToast({
         tone: "error",
-        title: "Save failed",
+        title: "Falha ao salvar",
         body: error instanceof Error ? error.message : "Failed to save skill file.",
       });
     },

@@ -237,12 +237,12 @@ function CommandActionButtons({
         const request = buildRequest(item, action);
         const Icon = action === "stop" ? Square : action === "restart" ? RotateCcw : Play;
         const label = action === "run"
-          ? "Run"
+          ? "Executar"
           : action === "start"
-            ? "Start"
+            ? "Iniciar"
             : action === "stop"
               ? "Parar"
-              : "Restart";
+              : "Reiniciar";
         const showSpinner = isPending && requestMatchesPending(pendingRequest, request);
         const disabled =
           isPending
