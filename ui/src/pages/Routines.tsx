@@ -229,7 +229,7 @@ function RoutineListRow({
           </span>
           <span className="flex items-center gap-2">
             {agent?.icon ? <AgentIcon icon={agent.icon} className="h-3.5 w-3.5 shrink-0" /> : null}
-            <span>{routine.assigneeAgentId ? (agent?.name ?? "Agente desconhecido") : "No default agent"}</span>
+            <span>{routine.assigneeAgentId ? (agent?.name ?? "Agente desconhecido") : "Sem agente padrão"}</span>
           </span>
           <span>
             {formatLastRunTimestamp(routine.lastRun?.triggeredAt)}
@@ -454,7 +454,7 @@ export function Routines() {
     },
     onError: (mutationError) => {
       pushToast({
-        title: "Routine run failed",
+        title: "Execução da rotina falhou",
         body: mutationError instanceof Error ? mutationError.message : "Paperclip could not start the routine run.",
         tone: "error",
       });

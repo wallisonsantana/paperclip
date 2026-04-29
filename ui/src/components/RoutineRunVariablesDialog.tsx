@@ -298,7 +298,7 @@ export function RoutineRunVariablesDialog({
                 options={assigneeOptions}
                 recentOptionIds={recentAssigneeIds}
                 placeholder="Agente"
-                noneLabel="Select an agent"
+                noneLabel="Selecione um agente"
                 searchPlaceholder="Search agents..."
                 emptyMessage="Nenhum agente encontrado."
                 disablePortal

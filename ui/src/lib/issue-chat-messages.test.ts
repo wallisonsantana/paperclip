@@ -76,7 +76,7 @@ function createInteraction(
       tasks: [
         {
           clientKey: "task-1",
-          title: "Prototype the card",
+          title: "Prototipar o card",
         },
       ],
     },

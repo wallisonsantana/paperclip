@@ -27,7 +27,7 @@ describe("optimistic issue comments", () => {
     const comment = createOptimisticIssueComment({
       companyId: "company-1",
       issueId: "issue-1",
-      body: "Working on it",
+      body: "Trabalhando nisso",
       authorUserId: "board-1",
     });
 
@@ -46,7 +46,7 @@ describe("optimistic issue comments", () => {
     const comment = createOptimisticIssueComment({
       companyId: "company-1",
       issueId: "issue-1",
-      body: "Working on it",
+      body: "Trabalhando nisso",
       authorUserId: "board-1",
     });
 

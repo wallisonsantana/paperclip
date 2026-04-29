@@ -274,7 +274,7 @@ export function CompanySettings() {
               className="w-full rounded-md border border-border bg-transparent px-2.5 py-1.5 text-sm outline-none"
               type="text"
               value={description}
-              placeholder="Optional company description"
+              placeholder="Descrição opcional da empresa"
               onChange={(e) => setDescription(e.target.value)}
             />
           </Field>
@@ -408,7 +408,7 @@ export function CompanySettings() {
         </div>
         <div className="rounded-md border border-border px-4 py-3">
           <ToggleField
-            label="Require board approval for new hires"
+            label="Exigir aprovação do painel para novas contratações"
             hint="New agent hires stay pending until approved by board."
             checked={!!selectedCompany.requireBoardApprovalForNewAgents}
             onChange={(v) => settingsMutation.mutate(v)}

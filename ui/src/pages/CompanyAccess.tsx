@@ -38,7 +38,7 @@ const permissionLabels: Record<PermissionKey, string> = {
 };
 
 function formatGrantSummary(member: CompanyMember) {
-  if (member.grants.length === 0) return "No explicit grants";
+  if (member.grants.length === 0) return "Sem concessões explícitas";
   return member.grants.map((grant) => permissionLabels[grant.permissionKey]).join(", ");
 }
 

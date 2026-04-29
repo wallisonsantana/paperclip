@@ -610,7 +610,7 @@ export const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>
         const activeElement = document.activeElement;
         if (activeElement === editable || editable.contains(activeElement)) return;
         if (isRichEditorDomEmpty(editable, editorValue, placeholder)) {
-          setRichEditorError("Rich editor failed to load content");
+          setRichEditorError("Editor rico falhou ao carregar conteúdo");
         }
       }, 0);
     };
@@ -639,7 +639,7 @@ export const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>
     const imageHandler = hasImageUpload
       ? async (file: File) => {
           const handler = imageUploadHandlerRef.current;
-          if (!handler) throw new Error("No image upload handler");
+          if (!handler) throw new Error("Sem manipulador de envio de imagem");
           try {
             const src = await handler(file);
             setUploadError(null);

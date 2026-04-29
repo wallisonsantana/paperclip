@@ -401,7 +401,7 @@ export function WorkspaceRuntimeControls({
               )}
             >
               <Activity className="h-3.5 w-3.5" />
-              {runningCount > 0 ? `${runningCount} services running` : "No services running"}
+              {runningCount > 0 ? `${runningCount} services running` : "Nenhum serviço rodando"}
             </span>
             <span className="text-xs text-muted-foreground">
               {resolvedSections.jobs.length > 0

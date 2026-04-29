@@ -39,7 +39,7 @@ type ProjectWorkspaceVisibility = ProjectWorkspace["visibility"];
 const SOURCE_TYPE_OPTIONS: Array<{ value: ProjectWorkspaceSourceType; label: string; description: string }> = [
   { value: "local_path", label: "Local git checkout", description: "Um caminho local que o Paperclip pode usar diretamente." },
   { value: "non_git_path", label: "Local non-git path", description: "A local folder without git semantics." },
-  { value: "git_repo", label: "Remote git repo", description: "Uma URL de repositório com refs opcionais e checkout local." },
+  { value: "git_repo", label: "Repositório git remoto", description: "Uma URL de repositório com refs opcionais e checkout local." },
   { value: "remote_managed", label: "Remote-managed workspace", description: "A hosted workspace tracked by external reference." },
 ];
 
@@ -516,7 +516,7 @@ export function ProjectWorkspaceDetail() {
                     placeholder="codespaces"
                   />
                 </Field>
-                <Field label="Remote workspace ref">
+                <Field label="Ref do espaço remoto">
                   <input
                     className="w-full rounded-lg border border-border bg-background px-3 py-2 font-mono text-sm outline-none"
                     value={form.remoteWorkspaceRef}
@@ -527,7 +527,7 @@ export function ProjectWorkspaceDetail() {
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
-                <Field label="Setup command" hint="Runs when this workspace needs custom bootstrap">
+                <Field label="Setup command" hint="Executa quando este espaço precisa de bootstrap personalizado">
                   <textarea
                     className="min-h-28 w-full rounded-lg border border-border bg-background px-3 py-2 font-mono text-sm outline-none"
                     value={form.setupCommand}
@@ -535,7 +535,7 @@ export function ProjectWorkspaceDetail() {
                     placeholder="pnpm install && pnpm dev"
                   />
                 </Field>
-                <Field label="Comando de limpeza" hint="Runs before project-level execution workspace teardown">
+                <Field label="Comando de limpeza" hint="Executa antes do desligamento do espaço do projeto">
                   <textarea
                     className="min-h-28 w-full rounded-lg border border-border bg-background px-3 py-2 font-mono text-sm outline-none"
                     value={form.cleanupCommand}

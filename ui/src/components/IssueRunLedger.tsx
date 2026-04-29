@@ -88,7 +88,7 @@ const RETRY_PENDING_LIVENESS_COPY: LivenessCopy = {
 };
 
 const MISSING_LIVENESS_COPY: LivenessCopy = {
-  label: "No liveness data",
+  label: "Sem dados de atividade",
   tone: "border-border bg-background text-muted-foreground",
   description: "This run has no persisted liveness classification.",
 };
@@ -217,17 +217,17 @@ function stopStatusLabel(run: LedgerRun, stopReason: string | null) {
   if (run.status === "queued") return "Waiting to start";
   if (run.status === "running") return "Still running";
   if (!run.livenessState) return "Unavailable";
-  return "No stop reason";
+  return "Sem motivo de parada";
 }
 
 function lastUsefulActionLabel(run: LedgerRun) {
   if (run.status === "scheduled_retry") return "Waiting for next attempt";
   if (run.lastUsefulActionAt) return relativeTime(run.lastUsefulActionAt);
-  if (isActiveRun(run)) return "No action recorded yet";
+  if (isActiveRun(run)) return "Nenhuma ação registrada ainda";
   if (run.livenessState === "plan_only" || run.livenessState === "needs_followup") {
-    return "No concrete action";
+    return "Sem ação concreta";
   }
-  if (run.livenessState === "empty_response") return "No useful output";
+  if (run.livenessState === "empty_response") return "Sem saída útil";
   if (!run.livenessState) return "Unavailable";
   return "None recorded";
 }

@@ -103,7 +103,7 @@ export function PluginManager() {
       invalidatePluginQueries();
       setInstallDialogOpen(false);
       setInstallPackage("");
-      pushToast({ title: "Plugin installed successfully", tone: "success" });
+      pushToast({ title: "Plugin instalado com sucesso", tone: "success" });
     },
     onError: (err: Error) => {
       pushToast({ title: "Failed to install plugin", body: err.message, tone: "error" });
@@ -114,7 +114,7 @@ export function PluginManager() {
     mutationFn: (pluginId: string) => pluginsApi.uninstall(pluginId),
     onSuccess: () => {
       invalidatePluginQueries();
-      pushToast({ title: "Plugin uninstalled successfully", tone: "success" });
+      pushToast({ title: "Plugin desinstalado com sucesso", tone: "success" });
     },
     onError: (err: Error) => {
       pushToast({ title: "Failed to uninstall plugin", body: err.message, tone: "error" });

@@ -614,7 +614,7 @@ class PluginSlotErrorBoundary extends Component<PluginSlotErrorBoundaryProps, Pl
 
   override componentDidCatch(error: unknown, info: ErrorInfo): void {
     // Keep plugin failures isolated while preserving actionable diagnostics.
-    console.error("Plugin slot render failed", {
+    console.error("Falha ao renderizar slot do plugin", {
       pluginKey: this.props.slot.pluginKey,
       slotId: this.props.slot.id,
       error,

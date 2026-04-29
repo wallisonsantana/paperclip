@@ -943,7 +943,7 @@ export function CompanySkills() {
       setScanStatusMessage(summary);
       pushToast({
         tone: "success",
-        title: "Project skill scan complete",
+        title: "Escaneamento de habilidades do projeto concluído",
         body: summary,
       });
       if (result.conflicts[0]) {
@@ -964,7 +964,7 @@ export function CompanySkills() {
       setScanStatusMessage(null);
       pushToast({
         tone: "error",
-        title: "Project skill scan failed",
+        title: "Falha no escaneamento de habilidades do projeto",
         body: error instanceof Error ? error.message : "Failed to scan project workspaces.",
       });
     },
@@ -1184,7 +1184,7 @@ export function CompanySkills() {
                   size="icon-sm"
                   onClick={() => scanProjects.mutate()}
                   disabled={scanProjects.isPending}
-                  title="Scan project workspaces for skills"
+                  title="Escanear espaços do projeto em busca de habilidades"
                 >
                   <RefreshCw className={cn("h-4 w-4", scanProjects.isPending && "animate-spin")} />
                 </Button>

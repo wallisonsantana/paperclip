@@ -189,7 +189,7 @@ export function AgentConfigForm(props: AgentConfigFormProps) {
 
   const createSecret = useMutation({
     mutationFn: (input: { name: string; value: string }) => {
-      if (!selectedCompanyId) throw new Error("Select a company to create secrets");
+      if (!selectedCompanyId) throw new Error("Selecione uma empresa para criar segredos");
       return secretsApi.create(selectedCompanyId, input);
     },
     onSuccess: () => {
@@ -302,7 +302,7 @@ export function AgentConfigForm(props: AgentConfigFormProps) {
       : ["agents", "none", "detect-model", adapterType],
     queryFn: () => {
       if (!selectedCompanyId) {
-        throw new Error("Select a company to detect the model");
+        throw new Error("Selecione uma empresa para detectar o modelo");
       }
       return agentsApi.detectModel(selectedCompanyId, adapterType);
     },
@@ -883,7 +883,7 @@ export function AgentConfigForm(props: AgentConfigFormProps) {
               number={val!.intervalSec}
               onNumberChange={(v) => set!({ intervalSec: v })}
               numberLabel="sec"
-              numberPrefix="Run heartbeat every"
+              numberPrefix="Executar heartbeat a cada"
               numberHint={help.intervalSec}
               showNumber={val!.heartbeatEnabled}
             />
@@ -905,7 +905,7 @@ export function AgentConfigForm(props: AgentConfigFormProps) {
                 number={eff("heartbeat", "intervalSec", Number(heartbeat.intervalSec ?? 300))}
                 onNumberChange={(v) => mark("heartbeat", "intervalSec", v)}
                 numberLabel="sec"
-                numberPrefix="Run heartbeat every"
+                numberPrefix="Executar heartbeat a cada"
                 numberHint={help.intervalSec}
                 showNumber={eff("heartbeat", "enabled", heartbeat.enabled === true)}
               />
@@ -939,7 +939,7 @@ export function AgentConfigForm(props: AgentConfigFormProps) {
                   className={inputClass}
                 />
               </Field>
-              <Field label="Max concurrent runs" hint={help.maxConcurrentRuns}>
+              <Field label="Máximo de execuções simultâneas" hint={help.maxConcurrentRuns}>
                 <DraftNumberInput
                   value={eff(
                     "heartbeat",

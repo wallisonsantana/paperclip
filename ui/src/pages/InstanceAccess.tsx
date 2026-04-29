@@ -70,7 +70,7 @@ export function InstanceAccess() {
 
   const setAdminMutation = useMutation({
     mutationFn: async (makeAdmin: boolean) => {
-      if (!selectedUserId) throw new Error("No user selected");
+      if (!selectedUserId) throw new Error("Nenhum usuário selecionado");
       if (makeAdmin) return accessApi.promoteInstanceAdmin(selectedUserId);
       return accessApi.demoteInstanceAdmin(selectedUserId);
     },
@@ -117,7 +117,7 @@ export function InstanceAccess() {
               className="w-full rounded-md border border-border bg-background px-3 py-2"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search by name or email"
+              placeholder="Buscar por nome ou email"
             />
           </label>
           <div className="space-y-2">

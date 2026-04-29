@@ -888,7 +888,7 @@ export function CompanyImport() {
     } catch (err) {
       pushToast({
         tone: "error",
-        title: "Package read failed",
+        title: "Falha ao ler pacote",
         body: err instanceof Error ? err.message : "Failed to read folder.",
       });
     }
@@ -1196,7 +1196,7 @@ export function CompanyImport() {
 
         {targetMode === "new" && (
           <Field
-            label="New company name"
+            label="Nome da nova empresa"
             hint="Optional override. Leave blank to use the package name."
           >
             <input

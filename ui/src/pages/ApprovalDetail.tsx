@@ -109,7 +109,7 @@ export function ApprovalDetail() {
       setError(null);
       refresh();
     },
-    onError: (err) => setError(err instanceof Error ? err.message : "Revision request failed"),
+    onError: (err) => setError(err instanceof Error ? err.message : "Falha no pedido de revisão"),
   });
 
   const resubmitMutation = useMutation({
@@ -156,13 +156,13 @@ export function ApprovalDetail() {
       ? {
           label:
             (linkedIssues?.length ?? 0) > 1
-              ? "Review linked issues"
-              : "Review linked issue",
+              ? "Revisar tarefas vinculadas"
+              : "Revisar tarefa vinculada",
           to: `/issues/${primaryLinkedIssue.identifier ?? primaryLinkedIssue.id}`,
         }
       : linkedAgentId
         ? {
-            label: "Open hired agent",
+            label: "Abrir agente contratado",
             to: `/agents/${linkedAgentId}`,
           }
         : {

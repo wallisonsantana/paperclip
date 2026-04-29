@@ -1590,7 +1590,7 @@ export function IssueDetail() {
       invalidateIssueDetail();
       invalidateIssueCollections();
       pushToast({
-        title: interaction.kind === "request_confirmation" ? "Request declined" : "Suggestion rejected",
+        title: interaction.kind === "request_confirmation" ? "Request declined" : "Sugestão rejeitada",
         tone: "success",
       });
     },
@@ -1843,7 +1843,7 @@ export function IssueDetail() {
       invalidateIssueThreadLazily();
       invalidateIssueCollections();
       pushToast({
-        title: "Queued comment canceled",
+        title: "Comentário em fila cancelado",
         body: "The queued message was restored to the composer.",
         tone: "success",
       });
@@ -1869,7 +1869,7 @@ export function IssueDetail() {
       if (cancelledCommentBody) {
         restoreQueuedCommentDraft(cancelledCommentBody);
         pushToast({
-          title: "Queued comment canceled",
+          title: "Comentário em fila cancelado",
           body: "The queued message was restored to the composer.",
           tone: "success",
         });
@@ -1947,7 +1947,7 @@ export function IssueDetail() {
 
   const uploadAttachment = useMutation({
     mutationFn: async (file: File) => {
-      if (!selectedCompanyId) throw new Error("No company selected");
+      if (!selectedCompanyId) throw new Error("Nenhuma empresa selecionada");
       return issuesApi.uploadAttachment(selectedCompanyId, issueId!, file);
     },
     onSuccess: () => {

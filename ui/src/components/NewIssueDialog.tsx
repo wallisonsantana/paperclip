@@ -245,8 +245,8 @@ const priorities = [
 
 const EXECUTION_WORKSPACE_MODES = [
   { value: "shared_workspace", label: "Project default" },
-  { value: "isolated_workspace", label: "New isolated workspace" },
-  { value: "reuse_existing", label: "Reuse existing workspace" },
+  { value: "isolated_workspace", label: "Novo espaço isolado" },
+  { value: "reuse_existing", label: "Reutilizar espaço existente" },
 ] as const;
 
 function defaultProjectWorkspaceIdForProject(project: { workspaces?: Array<{ id: string; isPrimary: boolean }>; executionWorkspacePolicy?: { defaultProjectWorkspaceId?: string | null } | null } | null | undefined) {
@@ -459,7 +459,7 @@ export function NewIssueDialog() {
 
   const uploadDescriptionImage = useMutation({
     mutationFn: async (file: File) => {
-      if (!effectiveCompanyId) throw new Error("No company selected");
+      if (!effectiveCompanyId) throw new Error("Nenhuma empresa selecionada");
       return assetsApi.uploadImage(effectiveCompanyId, file, "issues/drafts");
     },
   });

@@ -255,7 +255,7 @@ export function ProjectProperties({ project, onUpdate, onFieldUpdate, getFieldSa
   });
   const createSecret = useMutation({
     mutationFn: (input: { name: string; value: string }) => {
-      if (!selectedCompanyId) throw new Error("Select a company to create secrets");
+      if (!selectedCompanyId) throw new Error("Selecione uma empresa para criar segredos");
       return secretsApi.create(selectedCompanyId, input);
     },
     onSuccess: () => {

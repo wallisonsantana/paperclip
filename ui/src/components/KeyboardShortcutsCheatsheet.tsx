@@ -20,7 +20,7 @@ const sections: ShortcutSection[] = [
       { keys: ["↑"], label: "Mover para cima" },
       { keys: ["←"], label: "Recolher grupo selecionado" },
       { keys: ["→"], label: "Expandir grupo selecionado" },
-      { keys: ["Enter"], label: "Open selected item" },
+      { keys: ["Enter"], label: "Abrir item selecionado" },
       { keys: ["a"], label: "Arquivar item" },
       { keys: ["y"], label: "Arquivar item" },
       { keys: ["r"], label: "Marcar como lida" },
@@ -38,9 +38,9 @@ const sections: ShortcutSection[] = [
   {
     title: "Global",
     shortcuts: [
-      { keys: ["/"], label: "Search current page or quick search" },
+      { keys: ["/"], label: "Buscar página atual ou busca rápida" },
       { keys: ["c"], label: "Nova tarefa" },
-      { keys: ["["], label: "Toggle sidebar" },
+      { keys: ["["], label: "Alternar barra lateral" },
       { keys: ["]"], label: "Toggle panel" },
       { keys: ["?"], label: "Show keyboard shortcuts" },
     ],

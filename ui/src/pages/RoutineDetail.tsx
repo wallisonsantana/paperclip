@@ -463,7 +463,7 @@ export function RoutineDetail() {
           : {}),
       }),
     onSuccess: async () => {
-      pushToast({ title: "Routine run started", tone: "success" });
+      pushToast({ title: "Execução da rotina iniciada", tone: "success" });
       setRunVariablesOpen(false);
       setActiveTab("runs");
       await Promise.all([
@@ -475,7 +475,7 @@ export function RoutineDetail() {
     },
     onError: (error) => {
       pushToast({
-        title: "Routine run failed",
+        title: "Execução da rotina falhou",
         body: error instanceof Error ? error.message : "Paperclip could not start the routine run.",
         tone: "error",
       });
@@ -663,7 +663,7 @@ export function RoutineDetail() {
   if (error || !routine) {
     return (
       <p className="pt-6 text-sm text-destructive">
-        {error instanceof Error ? error.message : "Routine not found"}
+        {error instanceof Error ? error.message : "Rotina não encontrada"}
       </p>
     );
   }
@@ -740,7 +740,7 @@ export function RoutineDetail() {
               updateRoutineStatus.mutate(automationEnabled ? "paused" : "active");
             }}
             disabled={automationToggleDisabled}
-            aria-label={automationEnabled ? "Pause automatic triggers" : "Ativar gatilhos automáticos"}
+            aria-label={automationEnabled ? "Pausar gatilhos automáticos" : "Ativar gatilhos automáticos"}
           />
           <span className={`min-w-[3.75rem] text-sm font-medium ${automationLabelClassName}`}>
             {automationLabel}

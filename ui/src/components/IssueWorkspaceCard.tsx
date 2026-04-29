@@ -17,8 +17,8 @@ import { Check, Copy, GitBranch, FolderOpen, Pencil, X } from "lucide-react";
 
 const EXECUTION_WORKSPACE_OPTIONS = [
   { value: "shared_workspace", label: "Project default" },
-  { value: "isolated_workspace", label: "New isolated workspace" },
-  { value: "reuse_existing", label: "Reuse existing workspace" },
+  { value: "isolated_workspace", label: "Novo espaço isolado" },
+  { value: "reuse_existing", label: "Reutilizar espaço existente" },
 ] as const;
 
 function issueModeForExistingWorkspace(mode: string | null | undefined) {
@@ -110,11 +110,11 @@ function configuredWorkspaceLabel(
 ) {
   switch (selection) {
     case "isolated_workspace":
-      return "New isolated workspace";
+      return "Novo espaço isolado";
     case "reuse_existing":
       return reusableWorkspace?.mode === "isolated_workspace"
         ? "Espaço isolado existente"
-        : "Reuse existing workspace";
+        : "Reutilizar espaço existente";
     default:
       return "Project default";
   }

@@ -70,7 +70,7 @@ export function NewGoalDialog() {
 
   const uploadDescriptionImage = useMutation({
     mutationFn: async (file: File) => {
-      if (!selectedCompanyId) throw new Error("No company selected");
+      if (!selectedCompanyId) throw new Error("Nenhuma empresa selecionada");
       return assetsApi.uploadImage(selectedCompanyId, file, "goals/drafts");
     },
   });
