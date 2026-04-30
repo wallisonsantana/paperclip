@@ -2648,15 +2648,15 @@ function AgentSkillsTab({
   const unsupportedSkillMessage = useMemo(() => {
     if (skillSnapshot?.mode !== "unsupported") return null;
     if (agent.adapterType === "openclaw_gateway") {
-      return "Paperclip cannot manage OpenClaw skills here. Visit your OpenClaw instance to manage this agent's skills.";
+      return "O Paperclip não gerencia habilidades do OpenClaw aqui. Acesse sua instância OpenClaw para gerenciar as habilidades deste agente.";
     }
-    return "Paperclip cannot manage skills for this adapter yet. Manage them in the adapter directly.";
+    return "O Paperclip ainda não gerencia habilidades para este adaptador. Gerencie direto no adaptador.";
   }, [agent.adapterType, skillSnapshot?.mode]);
   const hasUnsavedChanges = !arraysEqual(skillDraft, lastSavedSkills);
   const saveStatusLabel = syncSkills.isPending
-    ? "Saving changes..."
+    ? "Salvando alterações..."
     : hasUnsavedChanges
-      ? "Saving soon..."
+      ? "Salvando em breve..."
       : null;
 
   return (

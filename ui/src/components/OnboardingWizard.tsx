@@ -124,7 +124,7 @@ export function OnboardingWizard() {
 
   // Step 3
   const [taskTitle, setTaskTitle] = useState(
-    "Hire your first engineer and create a hiring plan"
+    "Contratar seu primeiro engenheiro e montar um plano de contratação"
   );
   const [taskDescription, setTaskDescription] = useState(
     DEFAULT_TASK_DESCRIPTION
@@ -298,7 +298,7 @@ export function OnboardingWizard() {
     setAdapterEnvLoading(false);
     setForceUnsetAnthropicApiKey(false);
     setUnsetAnthropicLoading(false);
-    setTaskTitle("Hire your first engineer and create a hiring plan");
+    setTaskTitle("Contratar seu primeiro engenheiro e montar um plano de contratação");
     setTaskDescription(DEFAULT_TASK_DESCRIPTION);
     setCreatedCompanyId(null);
     setCreatedCompanyPrefix(null);
@@ -410,7 +410,7 @@ export function OnboardingWizard() {
 
       setStep(2);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create company");
+      setError(err instanceof Error ? err.message : "Falha ao criar empresa");
     } finally {
       setLoading(false);
     }
@@ -596,7 +596,7 @@ export function OnboardingWizard() {
           : `/issues/${issueRef}`
       );
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create task");
+      setError(err instanceof Error ? err.message : "Falha ao criar tarefa");
     } finally {
       setLoading(false);
     }
@@ -654,7 +654,7 @@ export function OnboardingWizard() {
                     { step: 1 as Step, label: "Empresa", icon: Building2 },
                     { step: 2 as Step, label: "Agente", icon: Bot },
                     { step: 3 as Step, label: "Tarefa", icon: ListTodo },
-                    { step: 4 as Step, label: "Launch", icon: Rocket }
+                    { step: 4 as Step, label: "Lançar", icon: Rocket }
                   ] as const
                 ).map(({ step: s, label, icon: Icon }) => (
                   <button
@@ -701,7 +701,7 @@ export function OnboardingWizard() {
                     </label>
                     <input
                       className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50"
-                      placeholder="Acme Corp"
+                      placeholder="Atomicus Marketing"
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                       autoFocus
@@ -720,7 +720,7 @@ export function OnboardingWizard() {
                     </label>
                     <textarea
                       className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50 resize-none min-h-[60px]"
-                      placeholder="What is this company trying to achieve?"
+                      placeholder="O que esta empresa está tentando alcançar?"
                       value={companyGoal}
                       onChange={(e) => setCompanyGoal(e.target.value)}
                     />
@@ -892,7 +892,7 @@ export function OnboardingWizard() {
                           >
                             <input
                               className="w-full px-2 py-1.5 text-xs bg-transparent outline-none border-b border-border mb-1 placeholder:text-muted-foreground/50"
-                              placeholder="Search models..."
+                              placeholder="Buscar modelos..."
                               value={modelSearch}
                               onChange={(e) => setModelSearch(e.target.value)}
                               autoFocus
@@ -1119,7 +1119,7 @@ export function OnboardingWizard() {
                     </label>
                     <input
                       className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50"
-                      placeholder="e.g. Research competitor pricing"
+                      placeholder="ex: Pesquisar preços dos concorrentes"
                       value={taskTitle}
                       onChange={(e) => setTaskTitle(e.target.value)}
                       autoFocus
@@ -1132,7 +1132,7 @@ export function OnboardingWizard() {
                     <textarea
                       ref={textareaRef}
                       className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50 resize-none min-h-[120px] max-h-[300px] overflow-y-auto"
-                      placeholder="Add more detail about what the agent should do..."
+                      placeholder="Adicione mais detalhes sobre o que o agente deve fazer..."
                       value={taskDescription}
                       onChange={(e) => setTaskDescription(e.target.value)}
                     />
@@ -1295,9 +1295,9 @@ function AdapterEnvironmentResult({
 }) {
   const statusLabel =
     result.status === "pass"
-      ? "Passed"
+      ? "Passou"
       : result.status === "warn"
-      ? "Warnings"
+      ? "Avisos"
       : "Falhou";
   const statusClass =
     result.status === "pass"

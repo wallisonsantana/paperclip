@@ -1688,7 +1688,7 @@ export function NewIssueDialog() {
             >
               <span className="inline-flex items-center justify-center gap-1.5">
                 {createIssue.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}
-                <span>{createIssue.isPending ? "Creating..." : isSubIssueMode ? "Create Sub-Issue" : "Criar Tarefa"}</span>
+                <span>{createIssue.isPending ? "Criando..." : isSubIssueMode ? "Criar Subtarefa" : "Criar Tarefa"}</span>
               </span>
             </Button>
           </div>

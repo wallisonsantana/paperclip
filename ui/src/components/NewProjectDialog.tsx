@@ -138,9 +138,9 @@ export function NewProjectDialog() {
       const parsed = new URL(value);
       const segments = parsed.pathname.split("/").filter(Boolean);
       const repo = segments[segments.length - 1]?.replace(/\.git$/i, "") ?? "";
-      return repo || "GitHub repo";
+      return repo || "Repositório do GitHub";
     } catch {
-      return "GitHub repo";
+      return "Repositório do GitHub";
     }
   };
 
@@ -150,11 +150,11 @@ export function NewProjectDialog() {
     const repoUrl = workspaceRepoUrl.trim();
 
     if (localPath && !isAbsolutePath(localPath)) {
-      setWorkspaceError("Local folder must be a full absolute path.");
+      setWorkspaceError("A pasta local precisa ser um caminho absoluto completo.");
       return;
     }
     if (repoUrl && !looksLikeRepoUrl(repoUrl)) {
-      setWorkspaceError("Repo must use a valid GitHub or GitHub Enterprise repo URL.");
+      setWorkspaceError("O repositório precisa usar uma URL válida do GitHub ou GitHub Enterprise.");
       return;
     }
 
@@ -429,7 +429,7 @@ export function NewProjectDialog() {
         {/* Footer */}
         <div className="flex items-center justify-between px-4 py-2.5 border-t border-border">
           {createProject.isError ? (
-            <p className="text-xs text-destructive">Failed to create project.</p>
+            <p className="text-xs text-destructive">Falha ao criar projeto.</p>
           ) : (
             <span />
           )}
@@ -438,7 +438,7 @@ export function NewProjectDialog() {
             disabled={!name.trim() || createProject.isPending}
             onClick={handleSubmit}
           >
-            {createProject.isPending ? "Creating…" : "Create project"}
+            {createProject.isPending ? "Criando…" : "Criar projeto"}
           </Button>
         </div>
       </DialogContent>

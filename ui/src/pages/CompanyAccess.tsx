@@ -520,7 +520,7 @@ export function CompanyAccess() {
               }}
               disabled={updateMemberMutation.isPending}
             >
-              {updateMemberMutation.isPending ? "Salvando…" : "Save access"}
+              {updateMemberMutation.isPending ? "Salvando…" : "Salvar acesso"}
             </Button>
           </DialogFooter>
         </DialogContent>

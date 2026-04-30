@@ -412,14 +412,14 @@ export function InviteLandingPage() {
   });
 
   const joinButtonLabel = useMemo(() => {
-    if (!invite) return "Continue";
+    if (!invite) return "Continuar";
     if (invite.inviteType === "bootstrap_ceo") return "Aceitar convite";
-    if (showsAgentForm) return "Submit request";
+    if (showsAgentForm) return "Enviar pedido";
     return sessionQuery.data ? "Aceitar convite" : "Continuar";
   }, [invite, sessionQuery.data, showsAgentForm]);
 
   if (!token) {
-    return <div className="mx-auto max-w-xl py-10 text-sm text-destructive">Invalid invite token.</div>;
+    return <div className="mx-auto max-w-xl py-10 text-sm text-destructive">Token de convite inválido.</div>;
   }
 
   if (inviteQuery.isLoading || healthQuery.isLoading || sessionQuery.isLoading) {
