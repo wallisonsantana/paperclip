@@ -85,12 +85,12 @@ async function inspectGitCloseReadiness(workspace: ExecutionWorkspace): Promise<
   }
 
   if (!workspacePath) {
-    warnings.push("Workspace has no local path, so Paperclip cannot inspect git status before close.");
+    warnings.push("O espaço de trabalho não tem caminho local, então o Paperclip não consegue verificar o status do git antes de fechar.");
     return { git: null, warnings };
   }
 
   if (!(await pathExists(workspacePath))) {
-    warnings.push(`Workspace path "${workspacePath}" does not exist, so Paperclip cannot inspect git status before close.`);
+    warnings.push(`O caminho do espaço "${workspacePath}" não existe, então o Paperclip não consegue verificar o status do git antes de fechar.`);
     return {
       git: {
         repoRoot: null,
@@ -115,7 +115,7 @@ async function inspectGitCloseReadiness(workspace: ExecutionWorkspace): Promise<
     repoRoot = (await runGit(["rev-parse", "--show-toplevel"], workspacePath)).stdout.trim() || null;
   } catch (error) {
     warnings.push(
-      `Could not inspect git status for "${workspacePath}": ${error instanceof Error ? error.message : String(error)}`,
+      `Não foi possível verificar o status do git em "${workspacePath}": ${error instanceof Error ? error.message : String(error)}`,
     );
   }
 
@@ -143,7 +143,7 @@ async function inspectGitCloseReadiness(workspace: ExecutionWorkspace): Promise<
       }
     } catch (error) {
       warnings.push(
-        `Could not read git working tree status for "${workspacePath}": ${error instanceof Error ? error.message : String(error)}`,
+        `Não foi possível ler o status do working tree do git em "${workspacePath}": ${error instanceof Error ? error.message : String(error)}`,
       );
     }
   }
@@ -161,7 +161,7 @@ async function inspectGitCloseReadiness(workspace: ExecutionWorkspace): Promise<
       aheadCount = aheadRaw ? Number.parseInt(aheadRaw, 10) : 0;
     } catch (error) {
       warnings.push(
-        `Could not compare this workspace against ${baseRef}: ${error instanceof Error ? error.message : String(error)}`,
+        `Não foi possível comparar este espaço com ${baseRef}: ${error instanceof Error ? error.message : String(error)}`,
       );
     }
 
@@ -173,7 +173,7 @@ async function inspectGitCloseReadiness(workspace: ExecutionWorkspace): Promise<
       if (code === 1) isMergedIntoBase = false;
       else {
         warnings.push(
-          `Could not determine whether this workspace is merged into ${baseRef}: ${error instanceof Error ? error.message : String(error)}`,
+          `Não foi possível determinar se este espaço foi integrado em ${baseRef}: ${error instanceof Error ? error.message : String(error)}`,
         );
       }
     }
@@ -560,53 +560,53 @@ export function executionWorkspaceService(db: Db) {
       if (blockingIssues.length > 0) {
         const linkedIssueMessage =
           blockingIssues.length === 1
-            ? "This workspace is still linked to an open issue."
-            : `This workspace is still linked to ${blockingIssues.length} open issues.`;
+            ? "Este espaço ainda está vinculado a uma tarefa aberta."
+            : `Este espaço ainda está vinculado a ${blockingIssues.length} tarefas abertas.`;
         if (isSharedWorkspace) {
-          warnings.push(`${linkedIssueMessage} Archiving it will detach this shared workspace session from those issues, but keep the underlying project workspace available.`);
+          warnings.push(`${linkedIssueMessage} Arquivá-lo vai desconectar esta sessão compartilhada dessas tarefas, mas o espaço do projeto continua disponível.`);
         } else {
           blockingReasons.push(linkedIssueMessage);
         }
       }
 
       if (isSharedWorkspace) {
-        warnings.push("This shared workspace session points at project workspace infrastructure. Archiving it only removes the session record.");
+        warnings.push("Esta sessão compartilhada aponta para a infraestrutura do espaço do projeto. Arquivá-la só remove o registro da sessão.");
       }
 
       if (runtimeServices.some((service) => service.status !== "stopped")) {
         warnings.push(
           runtimeServices.length === 1
-            ? "Closing this workspace will stop 1 attached runtime service."
-            : `Closing this workspace will stop ${runtimeServices.length} attached runtime services.`,
+            ? "Fechar este espaço vai parar 1 serviço de runtime ativo."
+            : `Fechar este espaço vai parar ${runtimeServices.length} serviços de runtime ativos.`,
         );
       }
 
       if (git?.hasDirtyTrackedFiles) {
         warnings.push(
           git.dirtyEntryCount === 1
-            ? "The workspace has 1 modified tracked file."
-            : `The workspace has ${git.dirtyEntryCount} modified tracked files.`,
+            ? "O espaço tem 1 arquivo modificado e rastreado."
+            : `O espaço tem ${git.dirtyEntryCount} arquivos modificados e rastreados.`,
         );
       }
       if (git?.hasUntrackedFiles) {
         warnings.push(
           git.untrackedEntryCount === 1
-            ? "The workspace has 1 untracked file."
-            : `The workspace has ${git.untrackedEntryCount} untracked files.`,
+            ? "O espaço tem 1 arquivo não rastreado."
+            : `O espaço tem ${git.untrackedEntryCount} arquivos não rastreados.`,
         );
       }
       if (git?.aheadCount && git.aheadCount > 0 && git.isMergedIntoBase === false) {
         warnings.push(
           git.aheadCount === 1
-            ? `This workspace is 1 commit ahead of ${git.baseRef ?? "the base ref"} and is not merged.`
-            : `This workspace is ${git.aheadCount} commits ahead of ${git.baseRef ?? "the base ref"} and is not merged.`,
+            ? `Este espaço está 1 commit à frente de ${git.baseRef ?? "o ref base"} e ainda não foi integrado.`
+            : `Este espaço está ${git.aheadCount} commits à frente de ${git.baseRef ?? "o ref base"} e ainda não foi integrado.`,
         );
       }
       if (git?.behindCount && git.behindCount > 0) {
         warnings.push(
           git.behindCount === 1
-            ? `This workspace is 1 commit behind ${git.baseRef ?? "the base ref"}.`
-            : `This workspace is ${git.behindCount} commits behind ${git.baseRef ?? "the base ref"}.`,
+            ? `Este espaço está 1 commit atrás de ${git.baseRef ?? "o ref base"}.`
+            : `Este espaço está ${git.behindCount} commits atrás de ${git.baseRef ?? "o ref base"}.`,
         );
       }
 
@@ -688,7 +688,7 @@ export function executionWorkspaceService(db: Db) {
             )
           : false;
         if (containsProjectWorkspace) {
-          warnings.push(`Paperclip will archive this workspace but keep "${workspacePath}" because it contains the project workspace.`);
+          warnings.push(`O Paperclip vai arquivar este espaço mas manter "${workspacePath}" porque ele contém o espaço do projeto.`);
         } else {
           plannedActions.push({
             kind: "remove_local_directory",

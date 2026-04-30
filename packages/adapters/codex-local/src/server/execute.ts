@@ -137,7 +137,7 @@ async function pruneBrokenUnavailablePaperclipSkillSymlinks(
     await fs.unlink(target).catch(() => {});
     await onLog(
       "stdout",
-      `[paperclip] Removed stale Codex skill "${entry.name}" from ${skillsHome}\n`,
+      `[paperclip] Habilidade Codex obsoleta "${entry.name}" removida de ${skillsHome}\n`,
     );
   }
 }
@@ -252,7 +252,7 @@ export async function ensureCodexSkillsInjected(
     } catch (err) {
       await onLog(
         "stderr",
-        `[paperclip] Failed to inject Codex skill "${entry.key}" into ${skillsHome}: ${err instanceof Error ? err.message : String(err)}\n`,
+        `[paperclip] Falha ao injetar habilidade Codex "${entry.key}" em ${skillsHome}: ${err instanceof Error ? err.message : String(err)}\n`,
       );
     }
   }
@@ -454,7 +454,7 @@ export async function execute(ctx: AdapterExecutionContext): Promise<AdapterExec
   if (runtimeSessionId && !canResumeSession) {
     await onLog(
       "stdout",
-      `[paperclip] Codex session "${runtimeSessionId}" was saved for cwd "${runtimeSessionCwd}" and will not be resumed in "${cwd}".\n`,
+      `[paperclip] Codex sessão "${runtimeSessionId}" foi salva para o cwd "${runtimeSessionCwd}" e não será retomada em "${cwd}".\n`,
     );
   }
   const instructionsFilePath = asString(config.instructionsFilePath, "").trim();
@@ -473,7 +473,7 @@ export async function execute(ctx: AdapterExecutionContext): Promise<AdapterExec
       const reason = err instanceof Error ? err.message : String(err);
       await onLog(
         "stdout",
-        `[paperclip] Warning: could not read agent instructions file "${instructionsFilePath}": ${reason}\n`,
+        `[paperclip] Aviso: não foi possível ler o arquivo de instruções do agente "${instructionsFilePath}": ${reason}\n`,
       );
     }
   }
@@ -711,7 +711,7 @@ export async function execute(ctx: AdapterExecutionContext): Promise<AdapterExec
   ) {
     await onLog(
       "stdout",
-      `[paperclip] Codex resume session "${sessionId}" is unavailable; retrying with a fresh session.\n`,
+      `[paperclip] Codex sessão a retomar "${sessionId}" não está disponível; tentando com uma sessão nova.\n`,
     );
     const retry = await runAttempt(null);
     return toResult(retry, true, true);

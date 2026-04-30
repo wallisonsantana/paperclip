@@ -238,7 +238,7 @@ function deriveBundleState(agent: AgentLike): BundleState {
     try {
       entryFile = normalizeRelativeFilePath(storedEntryRaw);
     } catch {
-      warnings.push(`Ignored invalid instructions entry file "${storedEntryRaw}".`);
+      warnings.push(`Arquivo de instruções "${storedEntryRaw}" ignorado por ser inválido.`);
     }
   }
 
@@ -252,7 +252,7 @@ function deriveBundleState(agent: AgentLike): BundleState {
         ? "managed"
         : "external";
       if (!path.isAbsolute(legacyInstructionsPath)) {
-        warnings.push("Using legacy relative instructionsFilePath; migrate this agent to a managed or absolute external bundle.");
+        warnings.push("Usando instructionsFilePath relativo legado. Migre este agente para um bundle gerenciado ou externo absoluto.");
       }
     } catch (err) {
       warnings.push(err instanceof Error ? err.message : String(err));
@@ -310,12 +310,12 @@ async function recoverManagedBundleState(agent: AgentLike, state: BundleState): 
   const warnings = [...state.warnings];
   if (!configuredRootMatchesManaged) {
     warnings.push(
-      `Recovered managed instructions from disk at ${managedRootPath}; ignoring stale configured root ${state.rootPath}.`,
+      `Instruções gerenciadas recuperadas do disco em ${managedRootPath}; ignorando raiz configurada desatualizada ${state.rootPath}.`,
     );
   }
   if (hasEntryMismatch) {
     warnings.push(
-      `Recovered managed instructions entry file from disk as ${recoveredEntryFile}; previous entry ${state.entryFile} was missing.`,
+      `Arquivo de entrada das instruções recuperado do disco como ${recoveredEntryFile}; entrada anterior ${state.entryFile} estava faltando.`,
     );
   }
 

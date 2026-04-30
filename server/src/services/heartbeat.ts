@@ -1715,15 +1715,15 @@ function buildProcessLossMessage(run: {
   processGroupId: number | null;
 }, options?: { descendantOnly?: boolean }) {
   if (options?.descendantOnly && run.processGroupId) {
-    return `Process lost -- parent pid ${run.processPid ?? "unknown"} exited, but descendant process group ${run.processGroupId} was still alive and was terminated`;
+    return `Processo perdido — pid pai ${run.processPid ?? "desconhecido"} encerrou, mas o grupo de processos descendente ${run.processGroupId} ainda estava ativo e foi encerrado`;
   }
   if (run.processPid) {
-    return `Process lost -- child pid ${run.processPid} is no longer running`;
+    return `Processo perdido — pid filho ${run.processPid} não está mais rodando`;
   }
   if (run.processGroupId) {
-    return `Process lost -- process group ${run.processGroupId} is no longer running`;
+    return `Processo perdido — grupo de processos ${run.processGroupId} não está mais rodando`;
   }
-  return "Process lost -- server may have restarted";
+  return "Processo perdido — o servidor pode ter sido reiniciado";
 }
 
 function truncateDisplayId(value: string | null | undefined, max = 128) {
@@ -2318,12 +2318,12 @@ export function heartbeatService(db: Db) {
         const extraMissingCount = Math.max(0, missingProjectCwds.length - 1);
         warnings.push(
           extraMissingCount > 0
-            ? `Project workspace path "${firstMissing}" and ${extraMissingCount} other configured path(s) are not available yet. Using fallback workspace "${fallbackCwd}" for this run.`
-            : `Project workspace path "${firstMissing}" is not available yet. Using fallback workspace "${fallbackCwd}" for this run.`,
+            ? `Caminho do espaço do projeto "${firstMissing}" e ${extraMissingCount} outro(s) caminho(s) configurado(s) ainda não estão disponíveis. Usando espaço alternativo "${fallbackCwd}" nesta execução.`
+            : `Caminho do espaço do projeto "${firstMissing}" ainda não está disponível. Usando espaço alternativo "${fallbackCwd}" nesta execução.`,
         );
       } else if (!hasConfiguredProjectCwd) {
         warnings.push(
-          `Project workspace has no local cwd configured. Using fallback workspace "${fallbackCwd}" for this run.`,
+          `Espaço do projeto não tem cwd local configurado. Usando espaço alternativo "${fallbackCwd}" nesta execução.`,
         );
       }
       return {
@@ -2381,15 +2381,15 @@ export function heartbeatService(db: Db) {
     const warnings: string[] = [];
     if (sessionCwd) {
       warnings.push(
-        `Saved session workspace "${sessionCwd}" is not available. Using fallback workspace "${cwd}" for this run.`,
+        `Espaço da sessão salva "${sessionCwd}" não está disponível. Usando espaço alternativo "${cwd}" nesta execução.`,
       );
     } else if (resolvedProjectId) {
       warnings.push(
-        `No project workspace directory is currently available for this issue. Using fallback workspace "${cwd}" for this run.`,
+        `Nenhum diretório de espaço do projeto está disponível para esta tarefa. Usando espaço alternativo "${cwd}" nesta execução.`,
       );
     } else {
       warnings.push(
-        `No project or prior session workspace was available. Using fallback workspace "${cwd}" for this run.`,
+        `Nenhum espaço de projeto ou sessão anterior estava disponível. Usando espaço alternativo "${cwd}" nesta execução.`,
       );
     }
     return {
@@ -3821,7 +3821,7 @@ export function heartbeatService(db: Db) {
       const baseMessage = buildProcessLossMessage(run, descendantOnlyCleanup ? { descendantOnly: true } : undefined);
 
       let finalizedRun = await setRunStatus(run.id, "failed", {
-        error: shouldRetry ? `${baseMessage}; retrying once` : baseMessage,
+        error: shouldRetry ? `${baseMessage}; tentando uma vez mais` : baseMessage,
         errorCode: "process_lost",
         finishedAt: now,
         resultJson: mergeRunStopMetadataForAgent(
@@ -3830,13 +3830,13 @@ export function heartbeatService(db: Db) {
           {
             resultJson: parseObject(run.resultJson),
             errorCode: "process_lost",
-            errorMessage: shouldRetry ? `${baseMessage}; retrying once` : baseMessage,
+            errorMessage: shouldRetry ? `${baseMessage}; tentando uma vez mais` : baseMessage,
           },
         ),
       });
       await setWakeupStatus(run.wakeupRequestId, "failed", {
         finishedAt: now,
-        error: shouldRetry ? `${baseMessage}; retrying once` : baseMessage,
+        error: shouldRetry ? `${baseMessage}; tentando uma vez mais` : baseMessage,
       });
       if (!finalizedRun) finalizedRun = await getRun(run.id);
       if (!finalizedRun) continue;
@@ -5373,7 +5373,7 @@ export function heartbeatService(db: Db) {
       if (runScopedMentionedSkillKeys.length > 0) {
         await onLog(
           "stdout",
-          `[paperclip] Enabled run-scoped skills from issue mentions: ${runScopedMentionedSkillKeys.join(", ")}\n`,
+          `[paperclip] Habilidades ativadas para esta execução a partir de menções na tarefa: ${runScopedMentionedSkillKeys.join(", ")}\n`,
         );
       }
       for (const warning of runtimeWorkspaceWarnings) {
@@ -5425,7 +5425,7 @@ export function heartbeatService(db: Db) {
         } catch (err) {
           await onLog(
             "stderr",
-            `[paperclip] Failed to post workspace-ready comment: ${err instanceof Error ? err.message : String(err)}\n`,
+            `[paperclip] Falha ao postar comentário de espaço pronto: ${err instanceof Error ? err.message : String(err)}\n`,
           );
         }
       }
@@ -5522,7 +5522,7 @@ export function heartbeatService(db: Db) {
           } catch (err) {
             await onLog(
               "stderr",
-              `[paperclip] Failed to post adapter-managed runtime comment: ${err instanceof Error ? err.message : String(err)}\n`,
+              `[paperclip] Falha ao postar comentário de runtime gerenciado pelo adaptador: ${err instanceof Error ? err.message : String(err)}\n`,
             );
           }
         }
@@ -5560,7 +5560,7 @@ export function heartbeatService(db: Db) {
           : outcome === "succeeded"
             ? null
             : redactCurrentUserText(
-                adapterResult.errorMessage ?? (outcome === "timed_out" ? "Timed out" : "Adapter failed"),
+                adapterResult.errorMessage ?? (outcome === "timed_out" ? "Tempo esgotado" : "Falha no adaptador"),
                 currentUserRedactionOptions,
               );
       const runErrorCode =
@@ -5671,7 +5671,7 @@ export function heartbeatService(db: Db) {
           } catch (err) {
             await onLog(
               "stderr",
-              `[paperclip] Failed to post run summary comment: ${err instanceof Error ? err.message : String(err)}\n`,
+              `[paperclip] Falha ao postar comentário de resumo da execução: ${err instanceof Error ? err.message : String(err)}\n`,
             );
           }
         }
@@ -6893,7 +6893,7 @@ export function heartbeatService(db: Db) {
     return wakeupIds.length;
   }
 
-  async function cancelRunInternal(runId: string, reason = "Cancelled by control plane") {
+  async function cancelRunInternal(runId: string, reason = "Cancelado pelo painel de controle") {
     const run = await getRun(runId);
     if (!run) throw notFound("Heartbeat run not found");
     if (!CANCELLABLE_HEARTBEAT_RUN_STATUSES.includes(run.status as (typeof CANCELLABLE_HEARTBEAT_RUN_STATUSES)[number])) return run;

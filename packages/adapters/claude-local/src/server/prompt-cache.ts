@@ -151,7 +151,7 @@ export async function prepareClaudePromptBundle(input: {
     } catch (err) {
       await onLog(
         "stderr",
-        `[paperclip] Failed to materialize Claude skill "${entry.key}" into ${skillsHome}: ${err instanceof Error ? err.message : String(err)}\n`,
+        `[paperclip] Falha ao materializar habilidade Claude "${entry.key}" em ${skillsHome}: ${err instanceof Error ? err.message : String(err)}\n`,
       );
     }
   }

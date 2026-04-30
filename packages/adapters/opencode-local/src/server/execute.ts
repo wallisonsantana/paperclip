@@ -71,7 +71,7 @@ async function ensureOpenCodeSkillsInjected(
   for (const skillName of removedSkills) {
     await onLog(
       "stderr",
-      `[paperclip] Removed maintainer-only OpenCode skill "${skillName}" from ${skillsHome}\n`,
+      `[paperclip] Habilidade OpenCode "${skillName}" só do mantenedor removida de ${skillsHome}\n`,
     );
   }
   for (const entry of selectedEntries) {
@@ -87,7 +87,7 @@ async function ensureOpenCodeSkillsInjected(
     } catch (err) {
       await onLog(
         "stderr",
-        `[paperclip] Failed to inject OpenCode skill "${entry.key}" into ${skillsHome}: ${err instanceof Error ? err.message : String(err)}\n`,
+        `[paperclip] Falha ao injetar habilidade OpenCode "${entry.key}" em ${skillsHome}: ${err instanceof Error ? err.message : String(err)}\n`,
       );
     }
   }
@@ -224,7 +224,7 @@ export async function execute(ctx: AdapterExecutionContext): Promise<AdapterExec
     if (runtimeSessionId && !canResumeSession) {
       await onLog(
         "stdout",
-        `[paperclip] OpenCode session "${runtimeSessionId}" was saved for cwd "${runtimeSessionCwd}" and will not be resumed in "${cwd}".\n`,
+        `[paperclip] OpenCode sessão "${runtimeSessionId}" foi salva para o cwd "${runtimeSessionCwd}" e não será retomada em "${cwd}".\n`,
       );
     }
     const instructionsFilePath = asString(config.instructionsFilePath, "").trim();
@@ -244,7 +244,7 @@ export async function execute(ctx: AdapterExecutionContext): Promise<AdapterExec
         const reason = err instanceof Error ? err.message : String(err);
         await onLog(
           "stdout",
-          `[paperclip] Warning: could not read agent instructions file "${resolvedInstructionsFilePath}": ${reason}\n`,
+          `[paperclip] Aviso: não foi possível ler o arquivo de instruções do agente "${resolvedInstructionsFilePath}": ${reason}\n`,
         );
       }
     }

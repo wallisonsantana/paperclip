@@ -1375,7 +1375,7 @@ export async function cleanupExecutionWorkspaceArtifacts(input: {
     const worktreeExists = await directoryExists(workspacePath);
     if (worktreeExists) {
       if (!repoRoot) {
-        warnings.push(`Could not resolve git repo root for "${workspacePath}".`);
+        warnings.push(`Não foi possível resolver a raiz do repositório git para "${workspacePath}".`);
       } else {
         try {
           await recordGitOperation(input.recorder, {
@@ -1398,7 +1398,7 @@ export async function cleanupExecutionWorkspaceArtifacts(input: {
     }
     if (createdByRuntime && input.workspace.branchName) {
       if (!repoRoot) {
-        warnings.push(`Could not resolve git repo root to delete branch "${input.workspace.branchName}".`);
+        warnings.push(`Não foi possível resolver a raiz do repositório git para excluir o branch "${input.workspace.branchName}".`);
       } else {
         try {
           await recordGitOperation(input.recorder, {
@@ -1416,7 +1416,7 @@ export async function cleanupExecutionWorkspaceArtifacts(input: {
           });
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
-          warnings.push(`Skipped deleting branch "${input.workspace.branchName}": ${message}`);
+          warnings.push(`Exclusão do branch "${input.workspace.branchName}" foi pulada: ${message}`);
         }
       }
     }
@@ -1430,7 +1430,7 @@ export async function cleanupExecutionWorkspaceArtifacts(input: {
         )
       : false;
     if (containsProjectWorkspace) {
-      warnings.push(`Refusing to remove path "${workspacePath}" because it contains the project workspace.`);
+      warnings.push(`Recusando remover o caminho "${workspacePath}" porque ele contém o espaço do projeto.`);
     } else {
       await fs.rm(resolvedWorkspacePath, { recursive: true, force: true });
       if (input.recorder) {
